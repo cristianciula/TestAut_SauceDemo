@@ -14,4 +14,13 @@ public class LoginTests extends BaseTest {
         loginPage.enterPassword(standardUser.getPassword());
         loginPage.clickLogin();
     }
+
+    @Test
+    public void invalidLogin() throws InterruptedException {
+        loginPage.enterUsername(wrongUser.getRandomUsername());
+        Thread.sleep(3000);
+        loginPage.enterPassword(wrongUser.getPassword());
+        loginPage.clickLogin();
+        Thread.sleep(2000);
+    }
 }

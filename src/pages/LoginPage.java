@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import testdata.User;
 
 public class LoginPage {
 
@@ -28,5 +29,10 @@ public class LoginPage {
     }
     public void clickLogin() {
         driver.findElement(loginButton).click();
+    }
+    public void authenticate(User user) {
+        enterUsername(user.getUsername());
+        enterPassword(user.getPassword());
+        clickLogin();
     }
 }

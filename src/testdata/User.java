@@ -1,5 +1,6 @@
 package testdata;
 
+import utils.RandomGenerator;
 import utils.Reader;
 
 public class User {
@@ -23,5 +24,8 @@ public class User {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+    public String getRandomUsername() {
+        return username = getUsername() + RandomGenerator.integerValue(9) + RandomGenerator.stringValue(3);
     }
 }

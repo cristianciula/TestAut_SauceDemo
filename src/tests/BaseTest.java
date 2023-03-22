@@ -34,7 +34,7 @@ public class BaseTest {
         co.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(co);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
         loginPage = new LoginPage(driver);
 
