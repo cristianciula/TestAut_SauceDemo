@@ -17,12 +17,10 @@ public class BaseTest {
     public static void setUp() {
 
     }
-
     @AfterAll
     public static void tearDown() {
 
     }
-
     @BeforeEach
     public void beforeEach() {
         System.setProperty("webdriver.chrome.driver", "src/resource/chromedriver");
@@ -32,7 +30,6 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     }
-
     @AfterEach
     public void afterEach() {
         driver.close();
