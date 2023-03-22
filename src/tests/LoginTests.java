@@ -1,7 +1,10 @@
 package tests;
 
+import messages.LoginMessages;
 import org.junit.jupiter.api.Test;
 import testdata.User;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginTests extends BaseTest {
 
@@ -9,18 +12,27 @@ public class LoginTests extends BaseTest {
     public static User lockedOutUseruser = new User("lockedOutUser");
 
     @Test
-    public void login() {
+    public void validLogin() {
         loginPage.enterUsername(standardUser.getUsername());
         loginPage.enterPassword(standardUser.getPassword());
         loginPage.clickLogin();
     }
 
     @Test
-    public void invalidLogin() throws InterruptedException {
+    public void invalidLogin() {
         loginPage.enterUsername(wrongUser.getRandomUsername());
-        Thread.sleep(3000);
         loginPage.enterPassword(wrongUser.getPassword());
         loginPage.clickLogin();
-        Thread.sleep(2000);
+
+        assertEquals(LoginMessages.INVALID_LOGIN_ERROR, loginPage.getErrorMessage());
+    }
+
+    @Test
+    public void lockedUserLogin() {
+        loginPage.enterUsername(lockedOutUseruser.getUsername());
+        loginPage.enterPassword(lockedOutUseruser.getPassword());
+        loginPage.clickLogin();
+
+        assertEquals(LoginMessages.LOCKED_USER_LOGIN_ERROR, loginPage.getErrorMessage());
     }
 }

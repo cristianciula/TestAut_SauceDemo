@@ -16,6 +16,7 @@ public class LoginPage {
     public By usernameInput = By.id("user-name");
     public By passwordInput = By.id("password");
     public By loginButton = By.id("login-button");
+    public By errorMessage = By.xpath("//h3[@data-test=\"error\"]");
 
     //ACTIONS
     public boolean loginButtonIsDisplayed() {
@@ -34,5 +35,8 @@ public class LoginPage {
         enterUsername(user.getUsername());
         enterPassword(user.getPassword());
         clickLogin();
+    }
+    public String getErrorMessage() {
+        return driver.findElement(errorMessage).getText();
     }
 }
