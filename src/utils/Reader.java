@@ -10,9 +10,12 @@ import java.io.IOException;
 
 public class Reader {
 
+    //Method to read data from a json file
     public static JSONObject json(String name) {
-        String jsonPath = System.getProperty("user.dir") + "//src//testDataFiles//" + name + ".json";
+        //Find automatically the directory containing the testDataFiles package
+        String jsonPath = System.getProperty("user.dir")+"//src//testdatafiles//"+name+".json";
 
+        //Reads the json file at the indicated location
         FileReader reader = null;
         try {
             reader = new FileReader(jsonPath);
@@ -20,8 +23,10 @@ public class Reader {
             e.printStackTrace();
         }
 
+        //Define the parser to parse the content of the json file
         JSONParser jsonParser = new JSONParser();
 
+        //Define the returned Object
         JSONObject obj = null;
         try {
             obj = (JSONObject) jsonParser.parse(reader);
