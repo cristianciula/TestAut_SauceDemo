@@ -17,4 +17,13 @@ public class LoginPage {
     public By loginButton = By.id("login-button");
 
     //ACTIONS
+    public boolean loginButtonIsDisplayed() {
+        return driver.findElement(loginButton).isDisplayed();
+    }
+    public void enterUsername(String username) {
+        driver.findElement(usernameInput).sendKeys(username);
+    }
+    public void enterPassword(String password) {
+        driver.findElement(passwordInput).sendKeys(password);
+    }
 }
