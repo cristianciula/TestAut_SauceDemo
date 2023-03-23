@@ -20,5 +20,6 @@ public class ProductsTests extends BaseTest{
 
     @Test
     public void addProductToCart() {
+        System.out.println(productsPage.getProductNames());
     }
 }
