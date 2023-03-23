@@ -40,4 +40,17 @@ public class LoginTests extends BaseTest {
 
         assertEquals(LoginMessages.LOCKED_USER_LOGIN_ERROR, loginPage.getErrorMessage());
     }
+
+    @Test
+    public void logout() {
+        loginPage.authenticate(standardUser);
+        assertEquals(ProductsMessages.PRODUCTS_PAGE_TITLE, productsPage.getPageTitle());
+        assertTrue(header.shoppingCartIsDisplayed());
+
+        header.clickMenu();
+        assertTrue(header.menuSidebarIsDisplayed());
+
+        header.clickLogout();
+        assertTrue(loginPage.loginButtonIsDisplayed());
+    }
 }
