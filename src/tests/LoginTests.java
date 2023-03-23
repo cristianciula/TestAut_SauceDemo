@@ -1,10 +1,12 @@
 package tests;
 
 import messages.LoginMessages;
+import messages.ProductsMessages;
 import org.junit.jupiter.api.Test;
 import testdata.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginTests extends BaseTest {
 
@@ -16,6 +18,9 @@ public class LoginTests extends BaseTest {
         loginPage.enterUsername(standardUser.getUsername());
         loginPage.enterPassword(standardUser.getPassword());
         loginPage.clickLogin();
+
+        assertEquals(ProductsMessages.PRODUCTS_PAGE_TITLE, productsPage.getPageTitle());
+        assertTrue(header.shoppingCartIsDisplayed());
     }
 
     @Test
