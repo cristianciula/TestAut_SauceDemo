@@ -9,7 +9,7 @@ public class Product {
     private String price;
 
     public Product(String fileName) {
-        this.title = Reader.json(fileName).get("title").toString();
+        this.title = Reader.json(fileName).get("name").toString();
         this.description = Reader.json(fileName).get("description").toString();
         this.price = Reader.json(fileName).get("price").toString();
     }
