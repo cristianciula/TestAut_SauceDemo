@@ -22,6 +22,9 @@ public class ProductsPage {
     private By addToCartButton(String productName) {
         return By.xpath("//div[@class=\"inventory_item_name\"][contains(.,\""+productName+"\")]/following::button[1]");
     }
+    private By removeButton(String productName) {
+        return By.xpath("//div[@class=\"inventory_item_name\"][contains(.,\""+productName+"\")]/following::button[contains(.,\"Remove\")][1]");
+    }
 
     //ACTIONS
     public String getPageTitle() {
@@ -39,5 +42,7 @@ public class ProductsPage {
     public void addProductToCart(String productName) {
         driver.findElement(addToCartButton(productName)).click();
     }
-
+    public void removeProductFromCart(String productName) {
+        driver.findElement(removeButton(productName)).click();
+    }
 }

@@ -23,8 +23,15 @@ public class ProductsTests extends BaseTest{
     }
 
     @Test
-    public void addItemToCart() throws InterruptedException {
+    public void addItemToCart() {
         productsPage.addProductToCart(product.getName());
+    }
+
+    @Test
+    public void removeItemFromCart() throws InterruptedException {
+        productsPage.addProductToCart(product.getName());
+        Thread.sleep(2000);
+        productsPage.removeProductFromCart(product.getName());
         Thread.sleep(2000);
     }
 }
