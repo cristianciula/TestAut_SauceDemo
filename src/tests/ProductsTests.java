@@ -5,8 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import testdata.Product;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductsTests extends BaseTest{
 
@@ -23,15 +22,18 @@ public class ProductsTests extends BaseTest{
     }
 
     @Test
-    public void addItemToCart() {
+    public void addProductToCart() {
         productsPage.addProductToCart(product.getName());
+        assertTrue(header.cartCounterIsDisplayed());
+        assertEquals("1", header.getCartCounterValue());
     }
 
     @Test
-    public void removeItemFromCart() throws InterruptedException {
+    public void removeProductFromCart() {
         productsPage.addProductToCart(product.getName());
-        Thread.sleep(2000);
+        assertEquals("1", header.getCartCounterValue());
+
         productsPage.removeProductFromCart(product.getName());
-        Thread.sleep(2000);
+        assertFalse(header.cartCounterIsDisplayed());
     }
 }
