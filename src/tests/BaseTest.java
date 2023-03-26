@@ -33,7 +33,7 @@ public class BaseTest {
     }
     @BeforeEach
     public void beforeEach() {
-        System.setProperty("webdriver.chrome.driver", "src/resource/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "src/resource/chromedriver.exe");
         ChromeOptions co = new ChromeOptions();
         co.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(co);

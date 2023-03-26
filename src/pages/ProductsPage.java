@@ -3,12 +3,14 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import testdata.Product;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductsPage {
     WebDriver driver;
+    public static Product product = new Product("product");
 
     public ProductsPage(WebDriver driver) {
         this.driver = driver;
@@ -16,20 +18,26 @@ public class ProductsPage {
 
     //LOCATORS
     private By pageTitle = By.xpath("//span[@class=\"title\"]");
-    private By productTitles = By.xpath("//div[@class=\"inventory_item_name\"]");
+    private By productNameLabel = By.xpath("//div[@class=\"inventory_item_name\"]");
+    private By addToCartButton(String productName) {
+        return By.xpath("//div[@class=\"inventory_item_name\"][contains(.,\""+productName+"\")]/following::button[1]");
+    }
 
     //ACTIONS
     public String getPageTitle() {
         return driver.findElement(pageTitle).getText();
     }
+    public List<String> getAllProductsNames() {
+        List<WebElement> productsNamesLabels = driver.findElements(productNameLabel);
+        List<String> productsNames = new ArrayList<String>();
 
-    public List<String> getProductNames() {
-        List<WebElement> productTitleLabels = driver.findElements(productTitles);
-        List<String> productNames = new ArrayList<String>();
-
-        for (WebElement productTitleLabel:productTitleLabels) {
-            productNames.add(productTitleLabel.getText());
+        for (WebElement productNameLabel:productsNamesLabels) {
+            productsNames.add(productNameLabel.getText());
         }
-        return productNames;
+        return productsNames;
     }
+    public void addProductToCart(String productName) {
+        driver.findElement(addToCartButton(productName)).click();
+    }
+
 }

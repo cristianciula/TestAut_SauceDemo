@@ -1,7 +1,6 @@
 package tests;
 
 import messages.ProductsMessages;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import testdata.Product;
@@ -20,11 +19,12 @@ public class ProductsTests extends BaseTest{
         loginPage.authenticate(standardUser);
         assertEquals(ProductsMessages.PRODUCTS_PAGE_TITLE, productsPage.getPageTitle());
         assertTrue(header.shoppingCartIsDisplayed());
-        assertTrue(productsPage.getProductNames().contains(product.getTitle()));
+        assertTrue(productsPage.getAllProductsNames().contains(product.getName()));
     }
 
     @Test
-    public void addProductToCart() {
-
+    public void addItemToCart() throws InterruptedException {
+        productsPage.addProductToCart(product.getName());
+        Thread.sleep(2000);
     }
 }
