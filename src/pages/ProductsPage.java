@@ -42,7 +42,13 @@ public class ProductsPage {
     public void addProductToCart(String productName) {
         driver.findElement(addToCartButton(productName)).click();
     }
+    public String getAddToCartButtonText(String productName) {
+        return driver.findElement(addToCartButton(productName)).getText();
+    }
     public void removeProductFromCart(String productName) {
         driver.findElement(removeButton(productName)).click();
+    }
+    public String getRemoveButtonText(String productName) {
+        return driver.findElement(removeButton(productName)).getText();
     }
 }

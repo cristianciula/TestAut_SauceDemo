@@ -25,14 +25,17 @@ public class ProductsTests extends BaseTest{
     public void addProductToCart() {
         productsPage.addProductToCart(product.getName());
         assertEquals("1", header.getCartCounterValue());
+        assertEquals(ProductsMessages.REMOVE_BUTTON, productsPage.getRemoveButtonText(product.getName()));
     }
 
     @Test
     public void removeProductFromCart() {
         productsPage.addProductToCart(product.getName());
         assertEquals("1", header.getCartCounterValue());
+        assertEquals(ProductsMessages.REMOVE_BUTTON, productsPage.getRemoveButtonText(product.getName()));
 
         productsPage.removeProductFromCart(product.getName());
         assertFalse(header.cartCounterIsDisplayed());
+        assertEquals(ProductsMessages.ADD_TO_CART_BUTTON, productsPage.getAddToCartButtonText(product.getName()));
     }
 }
