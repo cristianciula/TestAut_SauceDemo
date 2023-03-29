@@ -26,7 +26,7 @@ public class ProductsTests extends BaseTest{
         productsPage.addProductToCart(product.getName());
         assertEquals("1", header.getCartBadgeValue());
         assertEquals(ProductsMessages.REMOVE_BUTTON, productsPage.getRemoveButtonText(product.getName()));
-        header.getShoppingCartBadgeColor();
+        assertEquals("#e2231a", header.getShoppingCartBadgeColor());
     }
 
     @Test
