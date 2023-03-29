@@ -20,7 +20,8 @@ public class LoginTests extends BaseTest {
         loginPage.clickLogin();
 
         assertEquals(ProductsMessages.PRODUCTS_PAGE_TITLE, productsPage.getPageTitle());
-        assertTrue(header.shoppingCartIsDisplayed());
+        assertTrue(header.shoppingCartButtonIsDisplayed());
+        assertTrue(header.menuButtonIsDisplayed());
     }
 
     @Test
@@ -45,10 +46,12 @@ public class LoginTests extends BaseTest {
     public void logout() {
         loginPage.authenticate(standardUser);
         assertEquals(ProductsMessages.PRODUCTS_PAGE_TITLE, productsPage.getPageTitle());
-        assertTrue(header.shoppingCartIsDisplayed());
+        assertTrue(header.shoppingCartButtonIsDisplayed());
+        assertTrue(header.menuButtonIsDisplayed());
 
         header.clickMenu();
         assertTrue(header.menuSidebarIsDisplayed());
+        assertTrue(header.logoutButtonIsDisplayed());
 
         header.clickLogout();
         assertTrue(loginPage.loginButtonIsDisplayed());

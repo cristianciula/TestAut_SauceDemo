@@ -18,14 +18,20 @@ public class Header {
     private By logoutButton = By.id("logout_sidebar_link");
 
     //ACTIONS
-    public boolean shoppingCartIsDisplayed() {
+    public boolean shoppingCartButtonIsDisplayed() {
         return driver.findElement(shoppingCartButton).isDisplayed();
     }
     public void clickMenu() {
         driver.findElement(menuButton).click();
     }
+    public boolean menuButtonIsDisplayed() {
+        return driver.findElement(menuButton).isDisplayed();
+    }
     public boolean menuSidebarIsDisplayed() {
         return driver.findElement(menuSidebar).isDisplayed();
+    }
+    public boolean logoutButtonIsDisplayed() {
+        return driver.findElement(logoutButton).isDisplayed();
     }
     public void clickLogout() {
         driver.findElement(logoutButton).click();

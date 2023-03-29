@@ -17,7 +17,7 @@ public class ProductsTests extends BaseTest{
 
         loginPage.authenticate(standardUser);
         assertEquals(ProductsMessages.PRODUCTS_PAGE_TITLE, productsPage.getPageTitle());
-        assertTrue(header.shoppingCartIsDisplayed());
+        assertTrue(header.shoppingCartButtonIsDisplayed());
         assertTrue(productsPage.getAllProductsNames().contains(product.getName()));
     }
 
