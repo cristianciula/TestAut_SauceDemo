@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import testdata.User;
+import utils.HexConverter;
 
 public class LoginPage {
 
@@ -16,7 +17,7 @@ public class LoginPage {
     public By usernameInput = By.id("user-name");
     public By passwordInput = By.id("password");
     public By loginButton = By.id("login-button");
-    public By errorMessage = By.xpath("//h3[@data-test=\"error\"]");
+    public By errorMessage = By.xpath("//div[@class=\"error-message-container error\"]");
 
     //ACTIONS
     public boolean loginButtonIsDisplayed() {
@@ -38,5 +39,19 @@ public class LoginPage {
     }
     public String getErrorMessage() {
         return driver.findElement(errorMessage).getText();
+    }
+    public String getLoginButtonColor() {
+        String rgba = driver.findElement(loginButton).getCssValue("background-color");
+        return HexConverter.rgbaToHex(rgba);
+    }
+    public String getUsernamePlaceholder() {
+        return driver.findElement(usernameInput).getAttribute("placeholder");
+    }
+    public String getPasswordPlaceholder() {
+        return driver.findElement(passwordInput).getAttribute("placeholder");
+    }
+    public String getErrorBackgroundColor() {
+        String rgba = driver.findElement(errorMessage).getCssValue("background-color");
+        return HexConverter.rgbaToHex(rgba);
     }
 }

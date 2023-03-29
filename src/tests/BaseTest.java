@@ -1,10 +1,13 @@
 package tests;
 
+import colors.LoginColors;
 import components.Header;
+import messages.LoginMessages;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pages.CartPage;
 import pages.LoginPage;
 import pages.ProductsPage;
 import testdata.URL;
@@ -12,6 +15,7 @@ import testdata.User;
 
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BaseTest {
@@ -19,6 +23,7 @@ public class BaseTest {
 
     public static LoginPage loginPage;
     public static ProductsPage productsPage;
+    public static CartPage cartPage;
     public static Header header;
 
     public static User standardUser = new User("standardUser");
@@ -42,10 +47,14 @@ public class BaseTest {
 
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
+        cartPage = new CartPage(driver);
         header = new Header(driver);
 
         driver.get(URL.LOGIN_PAGE);
         assertTrue(loginPage.loginButtonIsDisplayed());
+        assertEquals(LoginColors.LOGIN_BUTTON_COLOR, loginPage.getLoginButtonColor());
+        assertEquals(LoginMessages.USERNAME_PLACEHOLDER, loginPage.getUsernamePlaceholder());
+        assertEquals(LoginMessages.PASSWORD_PLACEHOLDER, loginPage.getPasswordPlaceholder());
     }
     @AfterEach
     public void afterEach() {

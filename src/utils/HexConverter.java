@@ -3,7 +3,7 @@ package utils;
 import java.util.Arrays;
 import java.util.List;
 
-public class RgbaToHex {
+public class HexConverter {
 
     public static String rgbaToHex(String rgba) {
 

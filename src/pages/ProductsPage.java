@@ -34,7 +34,7 @@ public class ProductsPage {
         List<WebElement> productsNamesLabels = driver.findElements(productNameLabel);
         List<String> productsNames = new ArrayList<String>();
 
-        for (WebElement productNameLabel:productsNamesLabels) {
+        for (WebElement productNameLabel : productsNamesLabels) {
             productsNames.add(productNameLabel.getText());
         }
         return productsNames;

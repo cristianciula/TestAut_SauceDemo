@@ -2,7 +2,7 @@ package components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import utils.RgbaToHex;
+import utils.HexConverter;
 
 public class Header {
     WebDriver driver;
@@ -46,6 +46,9 @@ public class Header {
     }
     public String getShoppingCartBadgeColor() {
         String rgba = driver.findElement(shoppingCartBadge).getCssValue("background-color");
-        return RgbaToHex.rgbaToHex(rgba);
+        return HexConverter.rgbaToHex(rgba);
+    }
+    public void clickShoppingCart() {
+        driver.findElement(shoppingCartButton).click();
     }
 }
