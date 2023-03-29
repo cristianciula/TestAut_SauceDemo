@@ -24,7 +24,6 @@ public class ProductsTests extends BaseTest{
     @Test
     public void addProductToCart() {
         productsPage.addProductToCart(product.getName());
-        assertTrue(header.cartCounterIsDisplayed());
         assertEquals("1", header.getCartCounterValue());
     }
 

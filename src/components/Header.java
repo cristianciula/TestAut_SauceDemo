@@ -1,7 +1,6 @@
 package components;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 
 public class Header {
@@ -13,7 +12,7 @@ public class Header {
 
     //LOCATORS
     private By shoppingCartButton = By.id("shopping_cart_container");
-    private By shoppingCartCounter = By.xpath("//span[@class=\"shopping_cart_badge\"]");
+    private By shoppingCartCounter = By.xpath("//a[@class=\"shopping_cart_link\"]");
     private By menuButton = By.id("react-burger-menu-btn");
     private By menuSidebar = By.xpath("//div[@class=\"bm-menu\"]");
     private By logoutButton = By.id("logout_sidebar_link");
@@ -35,16 +34,6 @@ public class Header {
         return driver.findElement(shoppingCartCounter).getText();
     }
     public boolean cartCounterIsDisplayed() {
-        int cartCounter = driver.findElements(shoppingCartCounter).size();
-        return cartCounter > 0;
+        return !driver.findElement(shoppingCartCounter).getText().isEmpty();
     }
-    /*
-    public boolean cartCounterIsDisplayed() {
-        try {
-            return driver.findElement(shoppingCartCounter).isDisplayed();
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-    */
 }
