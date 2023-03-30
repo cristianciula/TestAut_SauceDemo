@@ -10,6 +10,7 @@ import messages.ProductsMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import testdata.Product;
+import testdata.UserInfo;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CheckoutTests extends BaseTest {
 
     public static Product product = new Product("product");
+    public static UserInfo userInfo = new UserInfo("userInfo");
 
     @BeforeEach
     public void beforeEach() {
@@ -59,5 +61,7 @@ public class CheckoutTests extends BaseTest {
         assertTrue(checkoutInfoPage.continueButtonIsEnabled());
         assertEquals(CheckoutInfoColors.CONTINUE_BUTTON_COLOR, checkoutInfoPage.getContinueButtonColor());
         assertTrue(checkoutInfoPage.cancelButtonIsEnabled());
+
+
     }
 }

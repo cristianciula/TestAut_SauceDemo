@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import testdata.UserInfo;
 import utils.HexConverter;
 
 public class CheckoutInfoPage {
@@ -15,6 +16,10 @@ public class CheckoutInfoPage {
     private By pageTitle = By.xpath("//span[@class=\"title\"]");
     private By continueButton = By.id("continue");
     private By cancelButton = By.id("cancel");
+    private By firstNameInput = By.id("first-name");
+    private By lastNameInput = By.id("last-name");
+    private By zipCodeInput = By.id("postal-code");
+
 
 
     //ACTIONS
@@ -30,5 +35,32 @@ public class CheckoutInfoPage {
     }
     public boolean cancelButtonIsEnabled() {
         return driver.findElement(cancelButton).isEnabled();
+    }
+    public void clickContinue() {
+        driver.findElement(continueButton).click();
+    }
+    public String getFirstNamePlaceholder() {
+        return driver.findElement(firstNameInput).getAttribute("placeholder");
+    }
+    public String getLastNamePlaceholder() {
+        return driver.findElement(lastNameInput).getAttribute("placeholder");
+    }
+    public String getZipCodePlaceholder() {
+        return driver.findElement(zipCodeInput).getAttribute("placeholder");
+    }
+    public void enterFirstName(String firstName) {
+        driver.findElement(firstNameInput).sendKeys(firstName);
+    }
+    public void enterLastName(String lastName) {
+        driver.findElement(lastNameInput).sendKeys(lastName);
+    }
+    public void enterZipCode(String zipCode) {
+        driver.findElement(zipCodeInput).sendKeys(zipCode);
+    }
+    public void fillUpForm(UserInfo userInfo) {
+        enterFirstName(userInfo.getFirstName());
+        enterLastName(userInfo.getLastName());
+        enterZipCode(userInfo.getZipCode());
+        clickContinue();
     }
 }
