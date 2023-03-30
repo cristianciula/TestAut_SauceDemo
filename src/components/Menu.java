@@ -15,7 +15,6 @@ public class Menu {
     }
 
     //LOCATORS
-    private By menuSidebar = By.xpath("//div[@class=\"bm-menu-wrap\"]");
     private By logoutButton = By.id("logout_sidebar_link");
 
     //ACTIONS
