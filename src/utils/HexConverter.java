@@ -15,8 +15,9 @@ public class HexConverter {
         int r = Integer.parseInt(rgbaValues.get(0));
         int g = Integer.parseInt(rgbaValues.get(1));
         int b = Integer.parseInt(rgbaValues.get(2));
-        int a = Integer.parseInt(rgbaValues.get(3));
+        //Ignored a (opacity) as it is not used in current project (always 1)
+        //int a = Integer.parseInt(rgbaValues.get(3));
         //Convert rgba values to hex string
-        return String.format("#%02x%02x%02x", r, g, b, a);
+        return String.format("#%02x%02x%02x", r, g, b);
     }
 }
