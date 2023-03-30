@@ -24,8 +24,9 @@ public class CheckoutTests extends BaseTest {
     }
 
     @Test
-    public void buyProduct() throws InterruptedException {
+    public void buyProduct() {
         //Open Product Details page and check product details
+
         productsPage.clickProductName(product.getName());
         assertEquals(product.getName(), productDetailsPage.getProductName());
         assertEquals(product.getDescription(), productDetailsPage.getProductDescription());
