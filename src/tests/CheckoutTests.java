@@ -3,6 +3,7 @@ package tests;
 import colors.CartColors;
 import colors.HeaderColors;
 import colors.ProductDetailsColors;
+import messages.CartMessages;
 import messages.ProductsMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,15 +43,16 @@ public class CheckoutTests extends BaseTest {
         assertEquals(ProductsMessages.REMOVE_BUTTON, productDetailsPage.getRemoveButtonText());
         assertEquals(ProductDetailsColors.REMOVE_BUTTON_TEXT_COLOR, productDetailsPage.getRemoveButtonTextColor());
 
-        //Navigate to Shopping Cart, check Shopping Cart elements and check that product is present in Cart
+        //Navigate to Shopping Cart, check Shopping Cart page elements and check that product is present in Cart
         header.clickShoppingCart();
-        assertTrue(cartPage.continueShoppingButtonIsDisplayed());
-        assertEquals(CartColors.CONTINUE_SHOPPING_BUTTON_COLOR, cartPage.getContinueShoppingButtonColor());
+        assertEquals(CartMessages.CART_PAGE_TITLE, cartPage.getPageTitle());
+        assertTrue(cartPage.checkoutButtonIsDisplayed());
+        assertEquals(CartColors.CONTINUE_SHOPPING_BUTTON_COLOR, cartPage.getCheckoutButtonColor());
         assertTrue(cartPage.getAllProductsInCart().contains(product.getName()));
         assertEquals("1", cartPage.getProductQuantity(product.getName()));
 
         //Continue to Checkout: Your Information page
-        cartPage.clickContinueShopping();
+
 
     }
 }

@@ -16,10 +16,12 @@ public class CartPage {
     }
 
     //LOCATORS
+    private By pageTitle = By.xpath("//span[@class=\"title\"]");
     private By productNameLabels = By.xpath("//div[@class=\"inventory_item_name\"]");
     private By continueShoppingButton = By.id("continue-shopping");
+    private By checkoutButton = By.id("checkout");
     private By productQuantityLabel(String productName) {
-        return By.xpath("//div[@class=\"inventory_item_name\"][text()=\""+productName+"\"]/ancestor::div[@class=\"cart_item\"]");
+        return By.xpath("//div[@class=\"inventory_item_name\"][text()=\""+productName+"\"]/ancestor::div[@class=\"cart_item\"]/div[@class=\"cart_quantity\"]");
     }
 
     //ACTIONS
@@ -32,17 +34,17 @@ public class CartPage {
         }
         return productsNames;
     }
-    public void clickContinueShopping() {
-        driver.findElement(continueShoppingButton).click();
+    public boolean checkoutButtonIsDisplayed() {
+        return driver.findElement(checkoutButton).isDisplayed();
     }
-    public boolean continueShoppingButtonIsDisplayed() {
-        return driver.findElement(continueShoppingButton).isDisplayed();
-    }
-    public String getContinueShoppingButtonColor() {
-        String rgba = driver.findElement(continueShoppingButton).getCssValue("background-color");
+    public String getCheckoutButtonColor() {
+        String rgba = driver.findElement(checkoutButton).getCssValue("background-color");
         return HexConverter.rgbaToHex(rgba);
     }
     public String getProductQuantity(String productName) {
         return driver.findElement(productQuantityLabel(productName)).getText();
+    }
+    public String getPageTitle() {
+        return driver.findElement(pageTitle).getText();
     }
 }
