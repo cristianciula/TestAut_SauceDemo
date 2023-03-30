@@ -28,6 +28,9 @@ public class ProductsPage {
     private By productName(String productName) {
         return By.xpath("//div[@class=\"inventory_item_name\"][contains(.,\""+productName+"\")]");
     }
+    private By productImage(String productName) {
+        return By.xpath("//img[@class=\"inventory_item_img\"][@alt=\""+productName+"\"]");
+    }
 
     //ACTIONS
     public String getPageTitle() {
@@ -42,13 +45,13 @@ public class ProductsPage {
         }
         return productsNames;
     }
-    public void addProductToCart(String productName) {
+    public void clickAddToCartButton(String productName) {
         driver.findElement(addToCartButton(productName)).click();
     }
     public String getAddToCartButtonText(String productName) {
         return driver.findElement(addToCartButton(productName)).getText();
     }
-    public void removeProductFromCart(String productName) {
+    public void clickRemoveButton(String productName) {
         driver.findElement(removeButton(productName)).click();
     }
     public String getRemoveButtonText(String productName) {
@@ -56,5 +59,11 @@ public class ProductsPage {
     }
     public void clickProductName(String productName) {
         driver.findElement(productName(product.getName())).click();
+    }
+    public boolean productImageIsDisplayed(String productName) {
+        return driver.findElement(productImage(productName)).isDisplayed();
+    }
+    public String getProductImage(String productName) {
+        return driver.findElement(productImage(productName)).getAttribute("src");
     }
 }

@@ -20,7 +20,8 @@ public class ProductDetailsPage {
     private By productPrice = By.xpath("//div[@class=\"inventory_details_price\"]");
     private By addToCartButton = By.id("add-to-cart-sauce-labs-bike-light");
     private By removeButton = By.xpath("//button[@class=\"btn btn_secondary btn_small btn_inventory\"]");
-
+    private By productImage = By.xpath("//img[@class=\"inventory_details_img\"]");
+    //div[@class="inventory_details_img_container"]
     //ACTIONS
     public String getProductName() {
         return driver.findElement(productName).getText();
@@ -40,5 +41,11 @@ public class ProductDetailsPage {
     public String getRemoveButtonTextColor() {
         String rgba = driver.findElement(removeButton).getCssValue("color");
         return HexConverter.rgbaToHex(rgba);
+    }
+    public boolean productImageIsDisplayed() {
+        return driver.findElement(productImage).isDisplayed();
+    }
+    public String getProductImage() {
+        return driver.findElement(productImage).getAttribute("src");
     }
 }

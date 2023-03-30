@@ -29,6 +29,8 @@ public class CheckoutTests extends BaseTest {
         assertEquals(product.getName(), productDetailsPage.getProductName());
         assertEquals(product.getDescription(), productDetailsPage.getProductDescription());
         assertEquals(product.getPrice(), productDetailsPage.getProductPrice());
+        assertTrue(productDetailsPage.productImageIsDisplayed());
+        assertEquals(ProductsMessages.PRODUCT_IMAGE, productDetailsPage.getProductImage());
         Thread.sleep(2000);
 
         productDetailsPage.clickAddToCart();
