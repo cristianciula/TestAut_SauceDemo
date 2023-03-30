@@ -14,6 +14,7 @@ public class CheckoutInfoPage {
     //LOCATORS
     private By pageTitle = By.xpath("//span[@class=\"title\"]");
     private By continueButton = By.id("continue");
+    private By cancelButton = By.id("cancel");
 
 
     //ACTIONS
@@ -26,5 +27,8 @@ public class CheckoutInfoPage {
     public String getContinueButtonColor() {
         String rgba = driver.findElement(continueButton).getCssValue("background-color");
         return HexConverter.rgbaToHex(rgba);
+    }
+    public boolean cancelButtonIsEnabled() {
+        return driver.findElement(cancelButton).isEnabled();
     }
 }

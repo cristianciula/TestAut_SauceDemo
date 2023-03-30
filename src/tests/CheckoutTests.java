@@ -58,5 +58,6 @@ public class CheckoutTests extends BaseTest {
         assertEquals(CheckoutInfoMessages.CHECKOUT_INFO_PAGE_TITLE, checkoutInfoPage.getPageTitle());
         assertTrue(checkoutInfoPage.continueButtonIsEnabled());
         assertEquals(CheckoutInfoColors.CONTINUE_BUTTON_COLOR, checkoutInfoPage.getContinueButtonColor());
+        assertTrue(checkoutInfoPage.cancelButtonIsEnabled());
     }
 }
