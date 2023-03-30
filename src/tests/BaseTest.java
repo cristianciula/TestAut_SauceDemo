@@ -2,11 +2,13 @@ package tests;
 
 import colors.LoginColors;
 import components.Header;
+import components.Menu;
 import messages.LoginMessages;
 import org.junit.jupiter.api.*;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pages.CartPage;
 import pages.LoginPage;
 import pages.ProductDetailsPage;
@@ -27,6 +29,7 @@ public class BaseTest {
     public static ProductDetailsPage productDetailsPage;
     public static CartPage cartPage;
     public static Header header;
+    public static Menu menu;
 
     public static User standardUser = new User("standardUser");
 
@@ -52,6 +55,7 @@ public class BaseTest {
         productDetailsPage = new ProductDetailsPage(driver);
         cartPage = new CartPage(driver);
         header = new Header(driver);
+        menu = new Menu(driver);
 
         driver.get(URL.LOGIN_PAGE);
         assertTrue(loginPage.loginButtonIsDisplayed());

@@ -38,10 +38,11 @@ public class ProductsTests extends BaseTest{
 
         header.clickShoppingCart();
         assertTrue(cartPage.getAllProductsInCart().contains(product.getName()));
+        assertEquals(product.getPrice(), cartPage.getProductPrice(product.getName()));
     }
 
     @Test
-    public void removeProductFromCart() throws InterruptedException {
+    public void removeProductFromCart() {
         productsPage.clickAddToCartButton(product.getName());
         assertEquals("1", header.getCartBadgeValue());
         assertEquals(HeaderColors.CART_BADGE_COLOR, header.getShoppingCartBadgeColor());
@@ -58,6 +59,6 @@ public class ProductsTests extends BaseTest{
         assertEquals(ProductsMessages.ADD_TO_CART_BUTTON, productsPage.getAddToCartButtonText(product.getName()));
 
         driver.get(URL.CART_PAGE);
-        assertFalse(cartPage.productIsPresentInCart(product.getName()));
+        assertFalse(cartPage.getAllProductsInCart().contains(product.getName()));
     }
 }

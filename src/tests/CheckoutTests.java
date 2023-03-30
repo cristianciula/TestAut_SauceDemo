@@ -25,28 +25,25 @@ public class CheckoutTests extends BaseTest {
 
     @Test
     public void buyProduct() throws InterruptedException {
+        //Open Product Details page and check product details
         productsPage.clickProductName(product.getName());
         assertEquals(product.getName(), productDetailsPage.getProductName());
         assertEquals(product.getDescription(), productDetailsPage.getProductDescription());
         assertEquals(product.getPrice(), productDetailsPage.getProductPrice());
-        assertTrue(productDetailsPage.productImageIsDisplayed());
         assertEquals(ProductsMessages.PRODUCT_IMAGE, productDetailsPage.getProductImage());
-        Thread.sleep(2000);
 
+        //Add product to Cart and check that expected elements on Product Details page have been updated
         productDetailsPage.clickAddToCart();
         assertEquals("1", header.getCartBadgeValue());
         assertEquals(HeaderColors.CART_BADGE_COLOR, header.getShoppingCartBadgeColor());
         assertEquals(ProductsMessages.REMOVE_BUTTON, productDetailsPage.getRemoveButtonText());
         assertEquals(ProductDetailsColors.REMOVE_BUTTON_TEXT_COLOR, productDetailsPage.getRemoveButtonTextColor());
 
-        /*
-        productsPage.addProductToCart(product.getName());
-        assertEquals("1", header.getCartBadgeValue());
-        assertEquals(HeaderColors.CART_BADGE_COLOR, header.getShoppingCartBadgeColor());
-
+        //Navigate to Car page and check that product was added to Cart
         header.clickShoppingCart();
         assertTrue(cartPage.getAllProductsInCart().contains(product.getName()));
 
-         */
+        assertEquals(product.getPrice(), cartPage.getProductPrice(product.getName()));
+
     }
 }

@@ -15,13 +15,19 @@ public class CartPage {
     }
 
     //LOCATORS
-    private By productNameLabel = By.xpath("//div[@class=\"inventory_item_name\"]");
+    private By productNameLabels = By.xpath("//div[@class=\"inventory_item_name\"]");
+    private By productDescription(String productName) {
+        return By.xpath("//div[@class=\"inventory_item_desc\"][contains(.,\""+productName+"\")]");
+    }
     private By continueShoppingButton = By.id("continue-shopping");
     private By productsList = By.xpath("//div[@class=\"cart_list\"]");
+    private By productPrice(String productName) {
+        return By.xpath("//div[@class=\"inventory_item_name\"][contains(.,\""+productName+"\")]/following::div[@class=\"inventory_item_price\"]");
+    }
 
     //ACTIONS
     public List<String> getAllProductsInCart() {
-        List<WebElement> productsNamesLabels = driver.findElements(productNameLabel);
+        List<WebElement> productsNamesLabels = driver.findElements(productNameLabels);
         List<String> productsNames = new ArrayList<String>();
 
         for (WebElement productNameLabel : productsNamesLabels) {
@@ -29,10 +35,10 @@ public class CartPage {
         }
         return productsNames;
     }
+    public String getProductPrice(String productName) {
+        return driver.findElement(productPrice(productName)).getText();
+    }
     public void clickContinueShopping() {
         driver.findElement(continueShoppingButton).click();
-    }
-    public boolean productIsPresentInCart(String productName) {
-        return driver.findElement(productsList).getText().contains(productName);
     }
 }

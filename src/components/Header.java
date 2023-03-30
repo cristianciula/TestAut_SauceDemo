@@ -16,8 +16,6 @@ public class Header {
     private By productsInCartCounter = By.xpath("//a[@class=\"shopping_cart_link\"]");
     private By shoppingCartBadge = By.xpath("//span[@class=\"shopping_cart_badge\"]");
     private By menuButton = By.id("react-burger-menu-btn");
-    private By menuSidebar = By.xpath("//div[@class=\"bm-menu\"]");
-    private By logoutButton = By.id("logout_sidebar_link");
 
     //ACTIONS
     public boolean shoppingCartButtonIsDisplayed() {
@@ -28,15 +26,6 @@ public class Header {
     }
     public boolean menuButtonIsDisplayed() {
         return driver.findElement(menuButton).isDisplayed();
-    }
-    public boolean menuSidebarIsDisplayed() {
-        return driver.findElement(menuSidebar).isDisplayed();
-    }
-    public boolean logoutButtonIsDisplayed() {
-        return driver.findElement(logoutButton).isDisplayed();
-    }
-    public void clickLogout() {
-        driver.findElement(logoutButton).click();
     }
     public String getCartBadgeValue() {
         return driver.findElement(productsInCartCounter).getText();

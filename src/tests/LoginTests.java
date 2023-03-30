@@ -10,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class LoginTests extends BaseTest {
-
     public static User wrongUser = new User("wrongUser");
     public static User lockedOutUser = new User("lockedOutUser");
 
@@ -70,10 +69,10 @@ public class LoginTests extends BaseTest {
         assertTrue(header.menuButtonIsDisplayed());
 
         header.clickMenu();
-        assertTrue(header.menuSidebarIsDisplayed());
-        assertTrue(header.logoutButtonIsDisplayed());
+        menu.waitMenuToLoad();
+        assertTrue(menu.logoutButtonIsDisplayed());
 
-        header.clickLogout();
+        menu.clickLogout();
         assertTrue(loginPage.loginButtonIsDisplayed());
     }
 }
