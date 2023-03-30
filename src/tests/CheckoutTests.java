@@ -1,9 +1,11 @@
 package tests;
 
 import colors.CartColors;
+import colors.CheckoutInfoColors;
 import colors.HeaderColors;
 import colors.ProductDetailsColors;
 import messages.CartMessages;
+import messages.CheckoutInfoMessages;
 import messages.ProductsMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,16 +45,18 @@ public class CheckoutTests extends BaseTest {
         assertEquals(ProductsMessages.REMOVE_BUTTON, productDetailsPage.getRemoveButtonText());
         assertEquals(ProductDetailsColors.REMOVE_BUTTON_TEXT_COLOR, productDetailsPage.getRemoveButtonTextColor());
 
-        //Navigate to Shopping Cart, check Shopping Cart page elements and check that product is present in Cart
+        //Navigate to Shopping Cart and check that product is present in Cart
         header.clickShoppingCart();
         assertEquals(CartMessages.CART_PAGE_TITLE, cartPage.getPageTitle());
-        assertTrue(cartPage.checkoutButtonIsDisplayed());
+        assertTrue(cartPage.checkoutButtonIsEnabled());
         assertEquals(CartColors.CONTINUE_SHOPPING_BUTTON_COLOR, cartPage.getCheckoutButtonColor());
         assertTrue(cartPage.getAllProductsInCart().contains(product.getName()));
         assertEquals("1", cartPage.getProductQuantity(product.getName()));
 
-        //Continue to Checkout: Your Information page
-
-
+        //Continue to Checkout: Your Information page and check page elements
+        cartPage.clickCheckoutButton();
+        assertEquals(CheckoutInfoMessages.CHECKOUT_INFO_PAGE_TITLE, checkoutInfoPage.getPageTitle());
+        assertTrue(checkoutInfoPage.continueButtonIsEnabled());
+        assertEquals(CheckoutInfoColors.CONTINUE_BUTTON_COLOR, checkoutInfoPage.getContinueButtonColor());
     }
 }
