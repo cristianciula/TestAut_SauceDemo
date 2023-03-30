@@ -1,5 +1,6 @@
 package tests;
 
+import colors.CartColors;
 import colors.HeaderColors;
 import colors.ProductDetailsColors;
 import messages.ProductsMessages;
@@ -41,9 +42,15 @@ public class CheckoutTests extends BaseTest {
         assertEquals(ProductsMessages.REMOVE_BUTTON, productDetailsPage.getRemoveButtonText());
         assertEquals(ProductDetailsColors.REMOVE_BUTTON_TEXT_COLOR, productDetailsPage.getRemoveButtonTextColor());
 
-        //Navigate to Shopping Cart and check that product is present in Cart
+        //Navigate to Shopping Cart, check Shopping Cart elements and check that product is present in Cart
         header.clickShoppingCart();
+        assertTrue(cartPage.continueShoppingButtonIsDisplayed());
+        assertEquals(CartColors.CONTINUE_SHOPPING_BUTTON_COLOR, cartPage.getContinueShoppingButtonColor());
         assertTrue(cartPage.getAllProductsInCart().contains(product.getName()));
+        assertEquals("1", cartPage.getProductQuantity(product.getName()));
+
+        //Continue to Checkout: Your Information page
+        cartPage.clickContinueShopping();
 
     }
 }
