@@ -9,6 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import pages.CartPage;
 import pages.LoginPage;
+import pages.ProductDetailsPage;
 import pages.ProductsPage;
 import testdata.URL;
 import testdata.User;
@@ -23,6 +24,7 @@ public class BaseTest {
 
     public static LoginPage loginPage;
     public static ProductsPage productsPage;
+    public static ProductDetailsPage productDetailsPage;
     public static CartPage cartPage;
     public static Header header;
 
@@ -47,6 +49,7 @@ public class BaseTest {
 
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
+        productDetailsPage = new ProductDetailsPage(driver);
         cartPage = new CartPage(driver);
         header = new Header(driver);
 

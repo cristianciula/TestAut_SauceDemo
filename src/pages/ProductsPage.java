@@ -18,12 +18,15 @@ public class ProductsPage {
 
     //LOCATORS
     private By pageTitle = By.xpath("//span[@class=\"title\"]");
-    private By productNameLabel = By.xpath("//div[@class=\"inventory_item_name\"]");
+    private By productTitleLabel = By.xpath("//div[@class=\"inventory_item_name\"]");
     private By addToCartButton(String productName) {
         return By.xpath("//div[@class=\"inventory_item_name\"][contains(.,\""+productName+"\")]/following::button[1]");
     }
     private By removeButton(String productName) {
         return By.xpath("//div[@class=\"inventory_item_name\"][contains(.,\""+productName+"\")]/following::button[contains(.,\"Remove\")][1]");
+    }
+    private By productName(String productName) {
+        return By.xpath("//div[@class=\"inventory_item_name\"][contains(.,\""+productName+"\")]");
     }
 
     //ACTIONS
@@ -31,7 +34,7 @@ public class ProductsPage {
         return driver.findElement(pageTitle).getText();
     }
     public List<String> getAllProductsNames() {
-        List<WebElement> productsNamesLabels = driver.findElements(productNameLabel);
+        List<WebElement> productsNamesLabels = driver.findElements(productTitleLabel);
         List<String> productsNames = new ArrayList<String>();
 
         for (WebElement productNameLabel : productsNamesLabels) {
@@ -50,5 +53,8 @@ public class ProductsPage {
     }
     public String getRemoveButtonText(String productName) {
         return driver.findElement(removeButton(productName)).getText();
+    }
+    public void clickProductName(String productName) {
+        driver.findElement(productName(product.getName())).click();
     }
 }
