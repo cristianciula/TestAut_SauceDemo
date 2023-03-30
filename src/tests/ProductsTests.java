@@ -56,6 +56,5 @@ public class ProductsTests extends BaseTest{
         header.clickShoppingCart();
         Thread.sleep(2000);
         assertFalse(cartPage.productIsPresentInCart(product.getName()));
-        Thread.sleep(2000);
     }
 }
