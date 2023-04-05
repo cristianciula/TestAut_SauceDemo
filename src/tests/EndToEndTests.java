@@ -1,11 +1,9 @@
 package tests;
 
-import colors.CartColors;
-import colors.CheckoutInfoColors;
-import colors.HeaderColors;
-import colors.ProductDetailsColors;
+import colors.*;
 import messages.CartMessages;
 import messages.CheckoutInfoMessages;
+import messages.CheckoutOverviewMessages;
 import messages.ProductsMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +13,7 @@ import testdata.UserInfo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CheckoutTests extends BaseTest {
+public class EndToEndTests extends BaseTest {
 
     public static Product product = new Product("product");
     public static UserInfo userInfo = new UserInfo("userInfo");
@@ -61,7 +59,18 @@ public class CheckoutTests extends BaseTest {
         assertTrue(checkoutInfoPage.continueButtonIsEnabled());
         assertEquals(CheckoutInfoColors.CONTINUE_BUTTON_COLOR, checkoutInfoPage.getContinueButtonColor());
         assertTrue(checkoutInfoPage.cancelButtonIsEnabled());
+        assertEquals(CheckoutInfoMessages.FIRST_NAME_PLACEHOLDER, checkoutInfoPage.getFirstNamePlaceholder());
+        assertEquals(CheckoutInfoMessages.LAST_NAME_PLACEHOLDER, checkoutInfoPage.getLastNamePlaceholder());
+        assertEquals(CheckoutInfoMessages.ZIP_CODE_PLACEHOLDER, checkoutInfoPage.getZipCodePlaceholder());
 
+        //Fill in the form using valid user data and continue to the next page
+        checkoutInfoPage.fillUpForm(userInfo);
+        checkoutInfoPage.clickContinue();
 
+        //Check that user is on the Checkout: Overview page, having the expected product and payment details
+        assertEquals(CheckoutOverviewMessages.CHECKOUT_OVERVIEW_PAGE_TITLE, checkoutOverviewPage.getPageTitle());
+        assertTrue(checkoutOverviewPage.finishButtonIsEnabled());
+        assertTrue(checkoutOverviewPage.cancelButtonIsEnabled());
+        assertEquals(CheckoutOverviewColors.FINISH_BUTTON_COLOR, checkoutOverviewPage.getFinishButtonColor());
     }
 }

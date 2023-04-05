@@ -25,6 +25,7 @@ public class BaseTest {
     public static ProductDetailsPage productDetailsPage;
     public static CartPage cartPage;
     public static CheckoutInfoPage checkoutInfoPage;
+    public static CheckoutOverviewPage checkoutOverviewPage;
     public static Header header;
     public static Menu menu;
 
@@ -52,6 +53,7 @@ public class BaseTest {
         productDetailsPage = new ProductDetailsPage(driver);
         cartPage = new CartPage(driver);
         checkoutInfoPage = new CheckoutInfoPage(driver);
+        checkoutOverviewPage = new CheckoutOverviewPage(driver);
         header = new Header(driver);
         menu = new Menu(driver);
 

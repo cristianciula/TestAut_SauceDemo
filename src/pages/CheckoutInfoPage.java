@@ -13,9 +13,9 @@ public class CheckoutInfoPage {
     }
 
     //LOCATORS
-    private By pageTitle = By.xpath("//span[@class=\"title\"]");
-    private By continueButton = By.id("continue");
+    private By pageTitleLabel = By.xpath("//span[@class=\"title\"]");
     private By cancelButton = By.id("cancel");
+    private By continueButton = By.id("continue");
     private By firstNameInput = By.id("first-name");
     private By lastNameInput = By.id("last-name");
     private By zipCodeInput = By.id("postal-code");
@@ -24,7 +24,7 @@ public class CheckoutInfoPage {
 
     //ACTIONS
     public String getPageTitle() {
-        return driver.findElement(pageTitle).getText();
+        return driver.findElement(pageTitleLabel).getText();
     }
     public boolean continueButtonIsEnabled() {
         return driver.findElement(continueButton).isEnabled();
@@ -61,6 +61,5 @@ public class CheckoutInfoPage {
         enterFirstName(userInfo.getFirstName());
         enterLastName(userInfo.getLastName());
         enterZipCode(userInfo.getZipCode());
-        clickContinue();
     }
 }
