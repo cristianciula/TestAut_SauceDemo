@@ -8,4 +8,8 @@ public class LoginMessages {
     public final static String MISSING_PASSWORD_ERROR = "Epic sadface: Password is required";
     public final static String USERNAME_PLACEHOLDER = "Username";
     public final static String PASSWORD_PLACEHOLDER = "Password";
+
+    //COLORS
+    public final static String LOGIN_BUTTON_COLOR = "#3ddc91";
+    public final static String LOGIN_ERROR_BACKGROUND_COLOR = "#e2231a";
 }

@@ -1,6 +1,6 @@
 package tests;
 
-import colors.HeaderColors;
+import messages.HeaderMessages;
 import messages.ProductsMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,7 +38,7 @@ public class ProductsTests extends BaseTest{
         //Add product from Products list to Shopping Cart and check that expected elements have been updated
         productsPage.clickAddToCartButton(product.getName());
         assertEquals("1", header.getCartBadgeValue());
-        assertEquals(HeaderColors.CART_BADGE_COLOR, header.getShoppingCartBadgeColor());
+        assertEquals(HeaderMessages.CART_BADGE_COLOR, header.getShoppingCartBadgeColor());
         assertEquals(ProductsMessages.REMOVE_BUTTON, productsPage.getRemoveButtonText(product.getName()));
 
         //Open Shopping Cart page and check that product is present in Cart
@@ -51,7 +51,7 @@ public class ProductsTests extends BaseTest{
         //Add product from Products list to Shopping Cart and check that expected elements have been updated
         productsPage.clickAddToCartButton(product.getName());
         assertEquals("1", header.getCartBadgeValue());
-        assertEquals(HeaderColors.CART_BADGE_COLOR, header.getShoppingCartBadgeColor());
+        assertEquals(HeaderMessages.CART_BADGE_COLOR, header.getShoppingCartBadgeColor());
         assertEquals(ProductsMessages.REMOVE_BUTTON, productsPage.getRemoveButtonText(product.getName()));
 
         //Navigate to Shopping Cart and check that product is present in Cart

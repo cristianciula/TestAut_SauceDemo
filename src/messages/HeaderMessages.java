@@ -1,6 +1,7 @@
-package colors;
+package messages;
 
-public class HeaderColors {
+public class HeaderMessages {
 
+    //COLORS
     public final static String CART_BADGE_COLOR = "#e2231a";
 }

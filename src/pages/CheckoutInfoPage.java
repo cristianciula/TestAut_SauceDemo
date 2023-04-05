@@ -29,6 +29,9 @@ public class CheckoutInfoPage {
     public boolean continueButtonIsEnabled() {
         return driver.findElement(continueButton).isEnabled();
     }
+    public String getContinueButtonText() {
+        return driver.findElement(continueButton).getText();
+    }
     public String getContinueButtonColor() {
         String rgba = driver.findElement(continueButton).getCssValue("background-color");
         return HexConverter.rgbaToHex(rgba);

@@ -1,6 +1,5 @@
 package tests;
 
-import colors.LoginColors;
 import messages.LoginMessages;
 import messages.ProductsMessages;
 import org.junit.jupiter.api.Test;
@@ -31,7 +30,7 @@ public class LoginTests extends BaseTest {
         loginPage.clickLogin();
 
         assertEquals(LoginMessages.INVALID_USER_LOGIN_ERROR, loginPage.getErrorMessage());
-        assertEquals(LoginColors.LOGIN_ERROR_BACKGROUND_COLOR, loginPage.getErrorBackgroundColor());
+        assertEquals(LoginMessages.LOGIN_ERROR_BACKGROUND_COLOR, loginPage.getErrorBackgroundColor());
     }
 
     @Test
@@ -41,7 +40,7 @@ public class LoginTests extends BaseTest {
         loginPage.clickLogin();
 
         assertEquals(LoginMessages.LOCKED_USER_LOGIN_ERROR, loginPage.getErrorMessage());
-        assertEquals(LoginColors.LOGIN_ERROR_BACKGROUND_COLOR, loginPage.getErrorBackgroundColor());
+        assertEquals(LoginMessages.LOGIN_ERROR_BACKGROUND_COLOR, loginPage.getErrorBackgroundColor());
     }
 
     @Test
@@ -49,7 +48,7 @@ public class LoginTests extends BaseTest {
         loginPage.clickLogin();
 
         assertEquals(LoginMessages.MISSING_USERNAME_ERROR, loginPage.getErrorMessage());
-        assertEquals(LoginColors.LOGIN_ERROR_BACKGROUND_COLOR, loginPage.getErrorBackgroundColor());
+        assertEquals(LoginMessages.LOGIN_ERROR_BACKGROUND_COLOR, loginPage.getErrorBackgroundColor());
     }
 
     @Test
@@ -58,7 +57,7 @@ public class LoginTests extends BaseTest {
         loginPage.clickLogin();
 
         assertEquals(LoginMessages.MISSING_PASSWORD_ERROR, loginPage.getErrorMessage());
-        assertEquals(LoginColors.LOGIN_ERROR_BACKGROUND_COLOR, loginPage.getErrorBackgroundColor());
+        assertEquals(LoginMessages.LOGIN_ERROR_BACKGROUND_COLOR, loginPage.getErrorBackgroundColor());
     }
 
     @Test

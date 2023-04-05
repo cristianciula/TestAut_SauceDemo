@@ -1,6 +1,5 @@
 package tests;
 
-import colors.LoginColors;
 import components.Header;
 import components.Menu;
 import messages.LoginMessages;
@@ -59,7 +58,7 @@ public class BaseTest {
 
         driver.get(URL.LOGIN_PAGE);
         assertTrue(loginPage.loginButtonIsDisplayed());
-        assertEquals(LoginColors.LOGIN_BUTTON_COLOR, loginPage.getLoginButtonColor());
+        assertEquals(LoginMessages.LOGIN_BUTTON_COLOR, loginPage.getLoginButtonColor());
         assertEquals(LoginMessages.USERNAME_PLACEHOLDER, loginPage.getUsernamePlaceholder());
         assertEquals(LoginMessages.PASSWORD_PLACEHOLDER, loginPage.getPasswordPlaceholder());
     }

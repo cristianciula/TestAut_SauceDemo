@@ -30,6 +30,9 @@ public class CheckoutOverviewPage {
         String rgba = driver.findElement(finishButton).getCssValue("background-color");
         return HexConverter.rgbaToHex(rgba);
     }
+    public String getFinishButtonText() {
+        return driver.findElement(finishButton).getText();
+    }
     public void clickFinish() {
         driver.findElement(finishButton).click();
     }

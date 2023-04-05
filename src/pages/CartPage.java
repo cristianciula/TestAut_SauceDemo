@@ -39,6 +39,9 @@ public class CartPage {
         String rgba = driver.findElement(checkoutButton).getCssValue("background-color");
         return HexConverter.rgbaToHex(rgba);
     }
+    public String getCheckoutButtonText() {
+        return driver.findElement(checkoutButton).getText();
+    }
     public void clickCheckoutButton() {
         driver.findElement(checkoutButton).click();
     }
