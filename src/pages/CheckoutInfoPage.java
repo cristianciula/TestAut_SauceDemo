@@ -30,7 +30,7 @@ public class CheckoutInfoPage {
         return driver.findElement(continueButton).isEnabled();
     }
     public String getContinueButtonText() {
-        return driver.findElement(continueButton).getText();
+        return driver.findElement(continueButton).getAttribute("value");
     }
     public String getContinueButtonColor() {
         String rgba = driver.findElement(continueButton).getCssValue("background-color");
