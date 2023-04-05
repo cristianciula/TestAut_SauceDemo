@@ -14,6 +14,7 @@ public class Product {
         this.price = Reader.json(fileName).get("price").toString();
     }
 
+    //GETTERS
     public String getName() {
         return name;
     }
@@ -23,6 +24,8 @@ public class Product {
     public String getPrice() {
         return price;
     }
+
+    //SETTERS
     public void setName(String name) {
         this.name = name;
     }

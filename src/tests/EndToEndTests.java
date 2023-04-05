@@ -4,7 +4,7 @@ import messages.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import testdata.Product;
-import testdata.UserInfo;
+import testdata.UserData;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class EndToEndTests extends BaseTest {
 
     public static Product product = new Product("product");
-    public static UserInfo userInfo = new UserInfo("userInfo");
+    public static UserData userData = new UserData("userData");
 
     @BeforeEach
     public void beforeEach() {
@@ -61,8 +61,8 @@ public class EndToEndTests extends BaseTest {
         assertEquals(CheckoutInfoMessages.LAST_NAME_PLACEHOLDER, checkoutInfoPage.getLastNamePlaceholder());
         assertEquals(CheckoutInfoMessages.ZIP_CODE_PLACEHOLDER, checkoutInfoPage.getZipCodePlaceholder());
 
-        //Fill in the form using valid user data, continue to the next page and check the state of the Checkout Overview page
-        checkoutInfoPage.fillUpForm(userInfo);
+        //Fill in the form using valid user data, continue to the next page and check user is on Checkout Overview page
+        checkoutInfoPage.fillUpForm(userData);
         checkoutInfoPage.clickContinue();
         assertEquals(CheckoutOverviewMessages.CHECKOUT_OVERVIEW_PAGE_TITLE, checkoutOverviewPage.getPageTitle());
         assertTrue(checkoutOverviewPage.finishButtonIsEnabled());
@@ -70,7 +70,11 @@ public class EndToEndTests extends BaseTest {
         assertTrue(checkoutOverviewPage.cancelButtonIsEnabled());
         assertEquals(CheckoutOverviewMessages.FINISH_BUTTON_COLOR, checkoutOverviewPage.getFinishButtonColor());
 
-        //Check all details on the Checkout Overview page
-
+        //Check elements and user details on the Checkout Overview page
+        assertEquals(CheckoutOverviewMessages.PAYMENT_INFORMATION_LABEL, checkoutOverviewPage.getPaymentInformationLabel());
+        assertEquals(userData.getCreditCard(), checkoutOverviewPage.getPaymentInformationValue());
+        assertEquals(CheckoutOverviewMessages.SHIPPING_INFORMATION_LABEL, checkoutOverviewPage.getShippingInformationLabel());
+        assertEquals(userData.getShipping(), checkoutOverviewPage.getShippingInformationValue());
+        assertEquals(CheckoutOverviewMessages.PRICE_SUBTOTAL_LABEL, checkoutOverviewPage.getPriceSubtotalLabel());
     }
 }

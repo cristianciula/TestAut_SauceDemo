@@ -2,7 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import testdata.UserInfo;
+import testdata.UserData;
 import utils.HexConverter;
 
 public class CheckoutInfoPage {
@@ -60,9 +60,9 @@ public class CheckoutInfoPage {
     public void enterZipCode(String zipCode) {
         driver.findElement(zipCodeInput).sendKeys(zipCode);
     }
-    public void fillUpForm(UserInfo userInfo) {
-        enterFirstName(userInfo.getFirstName());
-        enterLastName(userInfo.getLastName());
-        enterZipCode(userInfo.getZipCode());
+    public void fillUpForm(UserData userData) {
+        enterFirstName(userData.getFirstName());
+        enterLastName(userData.getLastName());
+        enterZipCode(userData.getZipCode());
     }
 }
