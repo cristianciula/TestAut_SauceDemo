@@ -63,11 +63,9 @@ public class EndToEndTests extends BaseTest {
         assertEquals(CheckoutInfoMessages.LAST_NAME_PLACEHOLDER, checkoutInfoPage.getLastNamePlaceholder());
         assertEquals(CheckoutInfoMessages.ZIP_CODE_PLACEHOLDER, checkoutInfoPage.getZipCodePlaceholder());
 
-        //Fill in the form using valid user data and continue to the next page
+        //Fill in the form using valid user data, continue to the next page and check the state of the Checkout Overview page
         checkoutInfoPage.fillUpForm(userInfo);
         checkoutInfoPage.clickContinue();
-
-        //Check that user is on the Checkout: Overview page, having the expected product and payment details
         assertEquals(CheckoutOverviewMessages.CHECKOUT_OVERVIEW_PAGE_TITLE, checkoutOverviewPage.getPageTitle());
         assertTrue(checkoutOverviewPage.finishButtonIsEnabled());
         assertTrue(checkoutOverviewPage.cancelButtonIsEnabled());
