@@ -19,14 +19,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BaseTest {
     WebDriver driver;
 
+    public static Menu menu;
+    public static Header header;
+    public static CartPage cartPage;
     public static LoginPage loginPage;
     public static ProductsPage productsPage;
     public static ProductDetailsPage productDetailsPage;
-    public static CartPage cartPage;
     public static CheckoutInfoPage checkoutInfoPage;
     public static CheckoutOverviewPage checkoutOverviewPage;
-    public static Header header;
-    public static Menu menu;
+    public static CheckoutCompletePage checkoutCompletePage;
 
     public static User standardUser = new User("standardUser");
 
@@ -47,14 +48,15 @@ public class BaseTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
+        menu = new Menu(driver);
+        header = new Header(driver);
+        cartPage = new CartPage(driver);
         loginPage = new LoginPage(driver);
         productsPage = new ProductsPage(driver);
         productDetailsPage = new ProductDetailsPage(driver);
-        cartPage = new CartPage(driver);
         checkoutInfoPage = new CheckoutInfoPage(driver);
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
-        header = new Header(driver);
-        menu = new Menu(driver);
+        checkoutCompletePage = new CheckoutCompletePage(driver);
 
         driver.get(URL.LOGIN_PAGE);
         assertTrue(loginPage.loginButtonIsEnabled());

@@ -15,7 +15,7 @@ public class CheckoutCompletePage {
     private By pageTitle = By.xpath("//span[@class=\"title\"]");
     private By checkmarkImage = By.xpath("//img[@class=\"pony_express\"]");
     private By header = By.xpath("//h2[@class=\"complete-header\"]");
-    private By message = By.xpath("//div[@class=\"complete-text\"]");
+    private By description = By.xpath("//div[@class=\"complete-text\"]");
     private By backHomeButton = By.id("back-to-products");
 
     //ACTIONS
@@ -25,23 +25,26 @@ public class CheckoutCompletePage {
     public String getCheckmarkImage() {
         return driver.findElement(checkmarkImage).getAttribute("src");
     }
+    public boolean checkmarkImageIsDisplayed() {
+        return driver.findElement(checkmarkImage).isDisplayed();
+    }
     public String getHeader() {
         return driver.findElement(header).getText();
     }
-    public String getMessage() {
-        return driver.findElement(message).getText();
+    public String getDescription() {
+        return driver.findElement(description).getText();
     }
-    public String getBackToProductsButtonText() {
+    public String getBackHomeButtonText() {
         return driver.findElement(backHomeButton).getText();
     }
-    public String getBackToProductsButtonColor() {
+    public String getBackHomeButtonColor() {
         String rgba = driver.findElement(backHomeButton).getCssValue("background-color");
         return HexConverter.rgbaToHex(rgba);
     }
-    public boolean backToProductsButtonIsEnabled() {
+    public boolean backHomeButtonIsEnabled() {
         return driver.findElement(backHomeButton).isEnabled();
     }
-    public void clickBackToProductsButton() {
+    public void clickBackHomeButton() {
         driver.findElement(backHomeButton).click();
     }
 }

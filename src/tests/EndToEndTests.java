@@ -35,18 +35,22 @@ public class EndToEndTests extends BaseTest {
 
     @Test
     public void buyProduct() {
-        //Open Product Details page of a selected product and check the product's details
+        //Open Product Details page and verify product details
         productsPage.clickProductName(product.getName());
+        assertTrue(productDetailsPage.addToCartButtonIsEnabled());
+        assertTrue(productDetailsPage.backToProductsButtonIsDisplayed());
+
+        //Check Product Details
         assertEquals(product.getName(), productDetailsPage.getProductName());
         assertEquals(product.getDescription(), productDetailsPage.getProductDescription());
         assertEquals(Currency.USD + product.getPrice(), productDetailsPage.getProductPrice());
-        assertEquals(ProductsMessages.PRODUCT_IMAGE, productDetailsPage.getProductImage());
+        assertEquals(ProductDetailsMessages.PRODUCT_IMAGE, productDetailsPage.getProductImage());
 
         //Add product to Shopping Cart and check that expected elements on Product Details page have been updated
         productDetailsPage.clickAddToCart();
         assertEquals("1", header.getCartBadgeValue());
         assertEquals(HeaderMessages.CART_BADGE_COLOR, header.getShoppingCartBadgeColor());
-        assertEquals(ProductsMessages.REMOVE_BUTTON, productDetailsPage.getRemoveButtonText());
+        assertEquals(ProductDetailsMessages.REMOVE_BUTTON, productDetailsPage.getRemoveButtonText());
         assertEquals(ProductDetailsMessages.REMOVE_BUTTON_TEXT_COLOR, productDetailsPage.getRemoveButtonTextColor());
 
         //Navigate to Shopping Cart and check that product is present in Cart
@@ -93,6 +97,15 @@ public class EndToEndTests extends BaseTest {
 
         //Finish order & check confirmation page details
         checkoutOverviewPage.clickFinish();
+        assertEquals(CheckoutCompleteMessages.PAGE_TITLE, checkoutCompletePage.getPageTitle());
+        assertTrue(checkoutCompletePage.checkmarkImageIsDisplayed());
+        assertEquals(CheckoutCompleteMessages.HEADER, checkoutCompletePage.getHeader());
+        assertEquals(CheckoutCompleteMessages.DESCRIPTION, checkoutCompletePage.getDescription());
+        assertTrue(checkoutCompletePage.backHomeButtonIsEnabled());
 
+        //Navigate to Products page via Back Home button
+        checkoutCompletePage.clickBackHomeButton();
+        assertEquals(ProductsMessages.PRODUCTS_PAGE_TITLE, productsPage.getPageTitle());
+        assertTrue(productsPage.sortingIsDisplayed());
     }
 }
