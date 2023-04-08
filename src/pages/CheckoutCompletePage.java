@@ -16,7 +16,7 @@ public class CheckoutCompletePage {
     private By checkmarkImage = By.xpath("//img[@class=\"pony_express\"]");
     private By header = By.xpath("//h2[@class=\"complete-header\"]");
     private By message = By.xpath("//div[@class=\"complete-text\"]");
-    private By backToProductsButton = By.id("back-to-products");
+    private By backHomeButton = By.id("back-to-products");
 
     //ACTIONS
     public String getPageTitle() {
@@ -32,16 +32,16 @@ public class CheckoutCompletePage {
         return driver.findElement(message).getText();
     }
     public String getBackToProductsButtonText() {
-        return driver.findElement(backToProductsButton).getText();
+        return driver.findElement(backHomeButton).getText();
     }
     public String getBackToProductsButtonColor() {
-        String rgba = driver.findElement(backToProductsButton).getCssValue("background-color");
+        String rgba = driver.findElement(backHomeButton).getCssValue("background-color");
         return HexConverter.rgbaToHex(rgba);
     }
     public boolean backToProductsButtonIsEnabled() {
-        return driver.findElement(backToProductsButton).isEnabled();
+        return driver.findElement(backHomeButton).isEnabled();
     }
     public void clickBackToProductsButton() {
-        driver.findElement(backToProductsButton).click();
+        driver.findElement(backHomeButton).click();
     }
 }
