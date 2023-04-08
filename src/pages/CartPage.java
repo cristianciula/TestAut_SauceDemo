@@ -35,6 +35,9 @@ public class CartPage {
     public boolean checkoutButtonIsEnabled() {
         return driver.findElement(checkoutButton).isEnabled();
     }
+    public boolean checkoutButtonIsDisplayed() {
+        return driver.findElement(checkoutButton).isDisplayed();
+    }
     public String getCheckoutButtonColor() {
         String rgba = driver.findElement(checkoutButton).getCssValue("background-color");
         return HexConverter.rgbaToHex(rgba);

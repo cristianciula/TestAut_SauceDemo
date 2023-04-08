@@ -22,6 +22,12 @@ public class EndToEndTests extends BaseTest {
         assertEquals(ProductsMessages.PRODUCTS_PAGE_TITLE, productsPage.getPageTitle());
         assertTrue(header.shoppingCartButtonIsDisplayed());
         assertTrue(header.menuButtonIsDisplayed());
+
+        //Check expected product is in present on the Products page with expected details
+        assertTrue(productsPage.getAllProductsNames().contains(product.getName()));
+        assertEquals(ProductsMessages.PRODUCT_IMAGE, productsPage.getProductImage(product.getName()));
+        assertEquals(product.getDescription(), productsPage.getProductDescription(product.getName()));
+        assertEquals(product.getPrice(), productsPage.getProductPrice(product.getName()));
     }
 
     @Test

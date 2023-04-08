@@ -48,19 +48,21 @@ public class ProductsTests extends BaseTest{
 
     @Test
     public void removeProductFromCart() {
-        //Add product from Products list to Shopping Cart and check that expected elements have been updated
+        //Add product from Products list to Shopping Cart and check that expected elements have been updated on Products page
         productsPage.clickAddToCartButton(product.getName());
         assertEquals("1", header.getCartBadgeValue());
         assertEquals(HeaderMessages.CART_BADGE_COLOR, header.getShoppingCartBadgeColor());
         assertEquals(ProductsMessages.REMOVE_BUTTON, productsPage.getRemoveButtonText(product.getName()));
 
-        //Navigate to Shopping Cart and check that product is present in Cart
+        //Navigate to Shopping Cart page, check user is on Cart page and check that product is present
         driver.get(URL.CART_PAGE);
+        assertTrue(cartPage.checkoutButtonIsDisplayed());
         assertTrue(cartPage.getAllProductsInCart().contains(product.getName()));
 
-        //Navigate back to Products page
+        //Navigate back to Products page and check user is on Products page
         driver.get(URL.PRODUCTS_PAGE);
         assertEquals(ProductsMessages.PRODUCTS_PAGE_TITLE, productsPage.getPageTitle());
+        assertTrue(productsPage.sortingIsDisplayed());
 
         //While on Products page, remove product from Shopping Cart and check expected elements have been updated
         productsPage.clickRemoveButton(product.getName());
@@ -69,6 +71,7 @@ public class ProductsTests extends BaseTest{
 
         //Navigate to Shopping Cart page and check product is no longer present in Cart
         driver.get(URL.CART_PAGE);
+        assertTrue(cartPage.checkoutButtonIsDisplayed());
         assertFalse(cartPage.getAllProductsInCart().contains(product.getName()));
     }
 }

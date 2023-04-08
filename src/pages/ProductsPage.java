@@ -17,6 +17,7 @@ public class ProductsPage {
     //LOCATORS
     private By pageTitle = By.xpath("//span[@class=\"title\"]");
     private By productTitleLabel = By.xpath("//div[@class=\"inventory_item_name\"]");
+    private By sorting = By.xpath("//select[@class=\"product_sort_container\"]");
     private By productName(String productName) {
         return By.xpath("//div[@class=\"inventory_item_name\"][contains(.,\""+productName+"\")]");
     }
@@ -48,6 +49,9 @@ public class ProductsPage {
             productsNames.add(productNameLabel.getText());
         }
         return productsNames;
+    }
+    public boolean sortingIsDisplayed() {
+        return driver.findElement(sorting).isDisplayed();
     }
     public void clickAddToCartButton(String productName) {
         driver.findElement(addToCartButton(productName)).click();
