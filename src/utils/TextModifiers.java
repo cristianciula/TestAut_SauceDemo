@@ -4,10 +4,9 @@ import java.text.DecimalFormat;
 
 public class TextModifiers {
 
-    public static String decimalsFormatter(double value) {
+    public static String twoDecimalsFormatter(double value) {
 
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
-
         return decimalFormat.format(value);
     }
 }

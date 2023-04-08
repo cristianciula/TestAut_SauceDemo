@@ -78,6 +78,6 @@ public class CheckoutOverviewPage {
 
         double totalValue = itemValue + taxValue;
 
-        return TextModifiers.decimalsFormatter(totalValue);
+        return TextModifiers.twoDecimalsFormatter(totalValue);
     }
 }
