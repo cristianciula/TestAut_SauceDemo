@@ -72,6 +72,14 @@ public class EndToEndTests extends BaseTest {
         assertTrue(checkoutOverviewPage.totalLabelIsDisplayed());
 
         //Check that all details on the Checkout Overview page are accurate
+
+        //Product data
+        assertTrue(checkoutOverviewPage.getAllProductsInCart().contains(product.getName()));
+        assertEquals(product.getDescription(), checkoutOverviewPage.getProductDescription(product.getName()));
+        assertEquals(Currency.USD + product.getPrice(), checkoutOverviewPage.getProductPrice(product.getName()));
+        assertEquals("1", checkoutOverviewPage.getProductQuantity(product.getName()));
+
+        //Payment & Shipping Details
         assertEquals(userData.getCreditCard(), checkoutOverviewPage.getCardDetails());
         assertEquals(CheckoutOverviewMessages.SHIPPING_INFORMATION, checkoutOverviewPage.getShippingInformation());
         assertEquals(CheckoutOverviewMessages.ITEM_TOTAL_TEXT + Currency.USD + product.getPrice(),
@@ -81,5 +89,8 @@ public class EndToEndTests extends BaseTest {
         assertEquals(CheckoutOverviewMessages.TOTAL_TEXT + Currency.USD +
                          TextModifiers.twoDecimalsFormatter((product.getPrice() * CheckoutOverviewMessages.TAX_VALUE) + product.getPrice()),
                 checkoutOverviewPage.getTotalValue());
+        assertTrue(checkoutOverviewPage.finishButtonIsEnabled());
+
+        checkoutOverviewPage.clickFinish();
     }
 }
