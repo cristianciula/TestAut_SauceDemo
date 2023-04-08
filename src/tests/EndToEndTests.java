@@ -91,6 +91,8 @@ public class EndToEndTests extends BaseTest {
                 checkoutOverviewPage.getTotalValue());
         assertTrue(checkoutOverviewPage.finishButtonIsEnabled());
 
+        //Finish order & check confirmation page details
         checkoutOverviewPage.clickFinish();
+
     }
 }
