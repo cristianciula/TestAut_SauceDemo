@@ -77,7 +77,9 @@ public class ProductsPage {
     public String getProductDescription(String productName) {
         return driver.findElement(productDescription(productName)).getText();
     }
-    public String getProductPrice(String productName) {
-        return driver.findElement(productPrice(productName)).getText().replace("$","");
+    public double getProductPrice(String productName) {
+        String text = driver.findElement(productPrice(productName)).getText().replace("$", "");
+        double productPrice = Double.parseDouble(text);
+        return productPrice;
     }
 }

@@ -9,4 +9,8 @@ public class TextModifiers {
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         return decimalFormat.format(value);
     }
+
+    public static String getText(String text) {
+        return text;
+    }
 }

@@ -38,7 +38,6 @@ public class EndToEndTests extends BaseTest {
         assertEquals(product.getName(), productDetailsPage.getProductName());
         assertEquals(product.getDescription(), productDetailsPage.getProductDescription());
         assertEquals(product.getPrice(), productDetailsPage.getProductPrice());
-        //assertTrue(productDetailsPage.productImageIsDisplayed());
         assertEquals(ProductsMessages.PRODUCT_IMAGE, productDetailsPage.getProductImage());
 
         //Add product to Shopping Cart and check that expected elements on Product Details page have been updated
@@ -52,8 +51,6 @@ public class EndToEndTests extends BaseTest {
         header.clickShoppingCart();
         assertEquals(CartMessages.CART_PAGE_TITLE, cartPage.getPageTitle());
         assertTrue(cartPage.checkoutButtonIsEnabled());
-        //assertEquals(CartMessages.CHECKOUT_BUTTON, cartPage.getCheckoutButtonText());
-        //assertEquals(CartMessages.CHECKOUT_SHOPPING_BUTTON_COLOR, cartPage.getCheckoutButtonColor());
         assertTrue(cartPage.getAllProductsInCart().contains(product.getName()));
         assertEquals("1", cartPage.getProductQuantity(product.getName()));
 
@@ -64,12 +61,6 @@ public class EndToEndTests extends BaseTest {
         assertTrue(checkoutInfoPage.lastNameInputIsDisplayed());
         assertTrue(checkoutInfoPage.zipCodeInputIsDisplayed());
         assertTrue(checkoutInfoPage.continueButtonIsEnabled());
-        //assertEquals(CheckoutInfoMessages.CONTINUE_BUTTON, checkoutInfoPage.getContinueButtonText());
-        //assertEquals(CheckoutInfoMessages.CONTINUE_BUTTON_COLOR, checkoutInfoPage.getContinueButtonColor());
-        //assertTrue(checkoutInfoPage.cancelButtonIsEnabled());
-        //assertEquals(CheckoutInfoMessages.FIRST_NAME_PLACEHOLDER, checkoutInfoPage.getFirstNamePlaceholder());
-        //assertEquals(CheckoutInfoMessages.LAST_NAME_PLACEHOLDER, checkoutInfoPage.getLastNamePlaceholder());
-        //assertEquals(CheckoutInfoMessages.ZIP_CODE_PLACEHOLDER, checkoutInfoPage.getZipCodePlaceholder());
 
         //Fill in the form using valid user data, continue to Checkout Overview page and verify user is on expected page
         checkoutInfoPage.fillUpForm(userData);
@@ -77,17 +68,12 @@ public class EndToEndTests extends BaseTest {
         assertEquals(CheckoutOverviewMessages.CHECKOUT_OVERVIEW_PAGE_TITLE, checkoutOverviewPage.getPageTitle());
         assertTrue(checkoutOverviewPage.finishButtonIsEnabled());
         assertTrue(checkoutOverviewPage.totalLabelIsDisplayed());
-        //assertEquals(CheckoutOverviewMessages.FINISH_BUTTON, checkoutOverviewPage.getFinishButtonText());
-        //assertTrue(checkoutOverviewPage.cancelButtonIsEnabled());
-        //assertEquals(CheckoutOverviewMessages.FINISH_BUTTON_COLOR, checkoutOverviewPage.getFinishButtonColor());
 
         //Check that all details on the Checkout Overview page are accurate
-        //assertEquals(CheckoutOverviewMessages.PAYMENT_INFORMATION_LABEL, checkoutOverviewPage.getPaymentInformationLabel());
         assertEquals(userData.getCreditCard(), checkoutOverviewPage.getCardInformation());
-        //assertEquals(CheckoutOverviewMessages.SHIPPING_INFORMATION_LABEL, checkoutOverviewPage.getShippingInformationLabel());
         assertEquals(userData.getShippingInfo(), checkoutOverviewPage.getShippingInformation());
-        //assertEquals(CheckoutOverviewMessages.PRICE_SUBTOTAL_LABEL, checkoutOverviewPage.getPriceSubtotalLabel());
         assertEquals(product.getPrice(), checkoutOverviewPage.getItemTotalValue());
+
         checkoutOverviewPage.getTotalValue();
     }
 }

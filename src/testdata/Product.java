@@ -6,12 +6,12 @@ public class Product {
 
     private String name;
     private String description;
-    private String price;
+    private double price;
 
     public Product(String fileName) {
         this.name = Reader.json(fileName).get("name").toString();
         this.description = Reader.json(fileName).get("description").toString();
-        this.price = Reader.json(fileName).get("price").toString();
+        this.price = (double) Reader.json(fileName).get("price");
     }
 
     //GETTERS
@@ -21,7 +21,7 @@ public class Product {
     public String getDescription() {
         return description;
     }
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -32,7 +32,7 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }
