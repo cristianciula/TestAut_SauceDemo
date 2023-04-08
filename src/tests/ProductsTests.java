@@ -4,6 +4,7 @@ import messages.HeaderMessages;
 import messages.ProductsMessages;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import testdata.Currency;
 import testdata.Product;
 import testdata.URL;
 
@@ -31,7 +32,7 @@ public class ProductsTests extends BaseTest{
         assertTrue(productsPage.productImageIsDisplayed(product.getName()));
         assertEquals(ProductsMessages.PRODUCT_IMAGE, productsPage.getProductImage(product.getName()));
         assertEquals(product.getDescription(), productsPage.getProductDescription(product.getName()));
-        assertEquals(product.getPrice(), productsPage.getProductPrice(product.getName()));
+        assertEquals(Currency.USD + product.getPrice(), productsPage.getProductPrice(product.getName()));
     }
 
     @Test

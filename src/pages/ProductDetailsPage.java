@@ -30,7 +30,7 @@ public class ProductDetailsPage {
         return driver.findElement(productDescription).getText();
     }
     public String getProductPrice() {
-        return driver.findElement(productPrice).getText().replace("$","");
+        return driver.findElement(productPrice).getText();
     }
     public void clickAddToCart() {
         driver.findElement(addToCartButton).click();

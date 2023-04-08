@@ -3,7 +3,6 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.HexConverter;
-import utils.TextModifiers;
 
 public class CheckoutOverviewPage {
     WebDriver driver;
@@ -39,22 +38,7 @@ public class CheckoutOverviewPage {
         String rgba = driver.findElement(finishButton).getCssValue("background-color");
         return HexConverter.rgbaToHex(rgba);
     }
-    public String getFinishButtonText() {
-        return driver.findElement(finishButton).getText();
-    }
-    public void clickFinish() {
-        driver.findElement(finishButton).click();
-    }
-    public String getPaymentInformationLabelText() {
-        return driver.findElement(paymentInformationLabel).getText();
-    }
-    public String getShippingInformationLabelText() {
-        return driver.findElement(shippingInformationLabel).getText();
-    }
-    public String getPriceSubtotalLabelText() {
-        return driver.findElement(priceSubtotalLabel).getText();
-    }
-    public String getCardInformation() {
+    public String getCardDetails() {
         return driver.findElement(paymentInformationValueLabel).getText();
     }
     public String getShippingInformation() {
@@ -64,20 +48,12 @@ public class CheckoutOverviewPage {
         return driver.findElement(totalLabel).isDisplayed();
     }
     public String getItemTotalValue() {
-        return driver.findElement(itemTotalValueLabel).getText().replace("Item total: $", "");
+        return driver.findElement(itemTotalValueLabel).getText();
     }
     public String getTaxValue() {
-        return driver.findElement(taxValueLabel).getText().replace("Tax: $", "");
+        return driver.findElement(taxValueLabel).getText();
     }
     public String getTotalValue() {
-        String itemTotalValue = getItemTotalValue();
-        double itemValue = Double.parseDouble(itemTotalValue);
-
-        String itemTaxValue = getTaxValue();
-        double taxValue = Double.parseDouble(itemTaxValue);
-
-        double totalValue = itemValue + taxValue;
-
-        return TextModifiers.twoDecimalsFormatter(totalValue);
+        return driver.findElement(totalLabel).getText();
     }
 }

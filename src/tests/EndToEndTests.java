@@ -3,8 +3,10 @@ package tests;
 import messages.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import testdata.Currency;
 import testdata.Product;
 import testdata.UserData;
+import utils.TextModifiers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -28,7 +30,7 @@ public class EndToEndTests extends BaseTest {
         assertTrue(productsPage.getAllProductsNames().contains(product.getName()));
         assertEquals(ProductsMessages.PRODUCT_IMAGE, productsPage.getProductImage(product.getName()));
         assertEquals(product.getDescription(), productsPage.getProductDescription(product.getName()));
-        assertEquals(product.getPrice(), productsPage.getProductPrice(product.getName()));
+        assertEquals(Currency.USD + product.getPrice(), productsPage.getProductPrice(product.getName()));
     }
 
     @Test
@@ -37,7 +39,7 @@ public class EndToEndTests extends BaseTest {
         productsPage.clickProductName(product.getName());
         assertEquals(product.getName(), productDetailsPage.getProductName());
         assertEquals(product.getDescription(), productDetailsPage.getProductDescription());
-        assertEquals(product.getPrice(), productDetailsPage.getProductPrice());
+        assertEquals(Currency.USD + product.getPrice(), productDetailsPage.getProductPrice());
         assertEquals(ProductsMessages.PRODUCT_IMAGE, productDetailsPage.getProductImage());
 
         //Add product to Shopping Cart and check that expected elements on Product Details page have been updated
@@ -70,10 +72,14 @@ public class EndToEndTests extends BaseTest {
         assertTrue(checkoutOverviewPage.totalLabelIsDisplayed());
 
         //Check that all details on the Checkout Overview page are accurate
-        assertEquals(userData.getCreditCard(), checkoutOverviewPage.getCardInformation());
-        assertEquals(userData.getShippingInfo(), checkoutOverviewPage.getShippingInformation());
-        assertEquals(product.getPrice(), checkoutOverviewPage.getItemTotalValue());
-
-        checkoutOverviewPage.getTotalValue();
+        assertEquals(userData.getCreditCard(), checkoutOverviewPage.getCardDetails());
+        assertEquals(CheckoutOverviewMessages.SHIPPING_INFORMATION, checkoutOverviewPage.getShippingInformation());
+        assertEquals(CheckoutOverviewMessages.ITEM_TOTAL_TEXT + Currency.USD + product.getPrice(),
+                checkoutOverviewPage.getItemTotalValue());
+        assertEquals(CheckoutOverviewMessages.TAX_TEXT + Currency.USD + CheckoutOverviewMessages.TAX_VALUE,
+                checkoutOverviewPage.getTaxValue());
+        assertEquals(CheckoutOverviewMessages.TOTAL_TEXT + Currency.USD +
+                         TextModifiers.twoDecimalsFormatter((product.getPrice() * CheckoutOverviewMessages.TAX_VALUE) + product.getPrice()),
+                checkoutOverviewPage.getTotalValue());
     }
 }
