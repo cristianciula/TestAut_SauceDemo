@@ -13,7 +13,7 @@ public class LoginTests extends BaseTest {
     public static User lockedOutUser = new User("lockedOutUser");
 
     @Test
-    public void validLogin() {
+    public void validUserLogin() {
         loginPage.enterUsername(standardUser.getUsername());
         loginPage.enterPassword(standardUser.getPassword());
         loginPage.clickLogin();
@@ -65,11 +65,11 @@ public class LoginTests extends BaseTest {
         loginPage.authenticate(standardUser);
         assertEquals(ProductsMessages.PRODUCTS_PAGE_TITLE, productsPage.getPageTitle());
         assertTrue(header.shoppingCartButtonIsDisplayed());
-        assertTrue(header.menuButtonIsDisplayed());
+        assertTrue(header.menuButtonIsEnabled());
 
         header.clickMenu();
         menu.waitMenuToLoad();
-        assertTrue(menu.logoutButtonIsDisplayed());
+        assertTrue(menu.logoutButtonIsEnabled());
 
         menu.clickLogout();
         assertTrue(loginPage.loginButtonIsDisplayed());

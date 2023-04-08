@@ -57,7 +57,7 @@ public class BaseTest {
         menu = new Menu(driver);
 
         driver.get(URL.LOGIN_PAGE);
-        assertTrue(loginPage.loginButtonIsDisplayed());
+        assertTrue(loginPage.loginButtonIsEnabled());
         assertEquals(LoginMessages.LOGIN_BUTTON_COLOR, loginPage.getLoginButtonColor());
         assertEquals(LoginMessages.USERNAME_PLACEHOLDER, loginPage.getUsernamePlaceholder());
         assertEquals(LoginMessages.PASSWORD_PLACEHOLDER, loginPage.getPasswordPlaceholder());

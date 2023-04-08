@@ -22,8 +22,8 @@ public class Menu {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.elementToBeClickable(logoutButton));
     }
-    public boolean logoutButtonIsDisplayed() {
-        return driver.findElement(logoutButton).isDisplayed();
+    public boolean logoutButtonIsEnabled() {
+        return driver.findElement(logoutButton).isEnabled();
     }
     public void clickLogout() {
         driver.findElement(logoutButton).click();

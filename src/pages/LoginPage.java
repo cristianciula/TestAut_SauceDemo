@@ -20,6 +20,9 @@ public class LoginPage {
     public By errorMessage = By.xpath("//div[@class=\"error-message-container error\"]");
 
     //ACTIONS
+    public boolean loginButtonIsEnabled() {
+        return driver.findElement(loginButton).isEnabled();
+    }
     public boolean loginButtonIsDisplayed() {
         return driver.findElement(loginButton).isDisplayed();
     }

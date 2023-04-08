@@ -27,6 +27,9 @@ public class Header {
     public boolean menuButtonIsDisplayed() {
         return driver.findElement(menuButton).isDisplayed();
     }
+    public boolean menuButtonIsEnabled() {
+        return driver.findElement(menuButton).isEnabled();
+    }
     public String getCartBadgeValue() {
         return driver.findElement(productsInCartCounter).getText();
     }
