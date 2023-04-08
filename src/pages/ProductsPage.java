@@ -78,6 +78,6 @@ public class ProductsPage {
         return driver.findElement(productDescription(productName)).getText();
     }
     public String getProductPrice(String productName) {
-        return driver.findElement(productPrice(productName)).getText();
+        return driver.findElement(productPrice(productName)).getText().replace("$","");
     }
 }

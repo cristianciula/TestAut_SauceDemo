@@ -21,7 +21,7 @@ public class ProductDetailsPage {
     private By addToCartButton = By.id("add-to-cart-sauce-labs-bike-light");
     private By removeButton = By.xpath("//button[@class=\"btn btn_secondary btn_small btn_inventory\"]");
     private By productImage = By.xpath("//img[@class=\"inventory_details_img\"]");
-    //div[@class="inventory_details_img_container"]
+
     //ACTIONS
     public String getProductName() {
         return driver.findElement(productName).getText();
@@ -30,7 +30,7 @@ public class ProductDetailsPage {
         return driver.findElement(productDescription).getText();
     }
     public String getProductPrice() {
-        return driver.findElement(productPrice).getText();
+        return driver.findElement(productPrice).getText().replace("$","");
     }
     public void clickAddToCart() {
         driver.findElement(addToCartButton).click();

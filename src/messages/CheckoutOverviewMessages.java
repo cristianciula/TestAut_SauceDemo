@@ -7,6 +7,7 @@ public class CheckoutOverviewMessages {
     public final static String SHIPPING_INFORMATION_LABEL = "Shipping Information";
     public final static String PRICE_SUBTOTAL_LABEL = "Price Subtotal";
     public final static String FINISH_BUTTON = "Finish";
+    public final static double TAX = 0.08;
 
     //COLORS
     public final static String FINISH_BUTTON_COLOR = "#3ddc91";

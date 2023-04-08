@@ -8,14 +8,14 @@ public class UserData {
     private String lastName;
     private String zipCode;
     private String creditCard;
-    private String shipping;
+    private String shippingInfo;
 
     public UserData(String fileName) {
         this.firstName = Reader.json(fileName).get("firstName").toString();
         this.lastName = Reader.json(fileName).get("lastName").toString();
         this.zipCode = Reader.json(fileName).get("zipCode").toString();
         this.creditCard = Reader.json(fileName).get("creditCard").toString();
-        this.shipping = Reader.json(fileName).get("shipping").toString();
+        this.shippingInfo = Reader.json(fileName).get("shippingInfo").toString();
     }
 
     //GETTERS
@@ -31,8 +31,8 @@ public class UserData {
     public String getCreditCard() {
         return creditCard;
     }
-    public String getShipping() {
-        return shipping;
+    public String getShippingInfo() {
+        return shippingInfo;
     }
 
     //SETTERS
@@ -48,7 +48,7 @@ public class UserData {
     public void setCreditCard(String creditCard) {
         this.creditCard = creditCard;
     }
-    public void setShipping(String shipping) {
-        this.shipping = shipping;
+    public void setShippingInfo(String shipping) {
+        this.shippingInfo = shipping;
     }
 }

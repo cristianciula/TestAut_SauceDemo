@@ -39,8 +39,20 @@ public class CheckoutInfoPage {
     public boolean cancelButtonIsEnabled() {
         return driver.findElement(cancelButton).isEnabled();
     }
+    public boolean cancelButtonIsDisplayed() {
+        return driver.findElement(cancelButton).isDisplayed();
+    }
     public void clickContinue() {
         driver.findElement(continueButton).click();
+    }
+    public boolean firstNameInputIsDisplayed() {
+        return driver.findElement(firstNameInput).isDisplayed();
+    }
+    public boolean lastNameInputIsDisplayed() {
+        return driver.findElement(lastNameInput).isDisplayed();
+    }
+    public boolean zipCodeInputIsDisplayed() {
+        return driver.findElement(zipCodeInput).isDisplayed();
     }
     public String getFirstNamePlaceholder() {
         return driver.findElement(firstNameInput).getAttribute("placeholder");

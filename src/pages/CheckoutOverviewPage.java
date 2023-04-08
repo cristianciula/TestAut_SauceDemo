@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.HexConverter;
+import utils.TextModifiers;
 
 public class CheckoutOverviewPage {
     WebDriver driver;
@@ -44,19 +45,39 @@ public class CheckoutOverviewPage {
     public void clickFinish() {
         driver.findElement(finishButton).click();
     }
-    public String getPaymentInformationLabel() {
+    public String getPaymentInformationLabelText() {
         return driver.findElement(paymentInformationLabel).getText();
     }
-    public String getShippingInformationLabel() {
+    public String getShippingInformationLabelText() {
         return driver.findElement(shippingInformationLabel).getText();
     }
-    public String getPriceSubtotalLabel() {
+    public String getPriceSubtotalLabelText() {
         return driver.findElement(priceSubtotalLabel).getText();
     }
-    public String getPaymentInformationValue() {
+    public String getCardInformation() {
         return driver.findElement(paymentInformationValueLabel).getText();
     }
-    public String getShippingInformationValue() {
+    public String getShippingInformation() {
         return driver.findElement(shippingInformationValueLabel).getText();
+    }
+    public boolean totalLabelIsDisplayed() {
+        return driver.findElement(totalLabel).isDisplayed();
+    }
+    public String getItemTotalValue() {
+        return driver.findElement(itemTotalValueLabel).getText().replace("Item total: $", "");
+    }
+    public String getTaxValue() {
+        return driver.findElement(taxValueLabel).getText().replace("Tax: $", "");
+    }
+    public String getTotalValue() {
+        String itemTotalValue = getItemTotalValue();
+        double itemValue = Double.parseDouble(itemTotalValue);
+
+        String itemTaxValue = getTaxValue();
+        double taxValue = Double.parseDouble(itemTaxValue);
+
+        double totalValue = itemValue + taxValue;
+
+        return TextModifiers.decimalsFormatter(totalValue);
     }
 }

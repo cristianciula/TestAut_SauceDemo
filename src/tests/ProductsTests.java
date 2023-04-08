@@ -21,6 +21,7 @@ public class ProductsTests extends BaseTest{
         assertEquals(ProductsMessages.PRODUCTS_PAGE_TITLE, productsPage.getPageTitle());
         assertTrue(header.shoppingCartButtonIsDisplayed());
         assertTrue(header.menuButtonIsDisplayed());
+        assertTrue(productsPage.sortingIsDisplayed());
     }
 
     @Test
