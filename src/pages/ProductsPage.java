@@ -16,8 +16,13 @@ public class ProductsPage {
 
     //LOCATORS
     private By pageTitle = By.xpath("//span[@class=\"title\"]");
-    private By productTitleLabel = By.xpath("//div[@class=\"inventory_item_name\"]");
-    private By sorting = By.xpath("//select[@class=\"product_sort_container\"]");
+    private By productNameLabels = By.xpath("//div[@class=\"inventory_item_name\"]");
+    private By productPriceLabels = By.xpath("//div[@class=\"inventory_item_price\"]");
+    private By sortSelector = By.xpath("//select[@class=\"product_sort_container\"]");
+    private By sortNameAZOption = By.xpath("//option[@value=\"az\"]");
+    private By sortNameZAOption = By.xpath("//option[@value=\"za\"]");
+    private By sortPriceLowToHighOption = By.xpath("//option[@value=\"lohi\"]");
+    private By sortPriceHighToLowOption = By.xpath("//option[@value=\"hilo\"]");
     private By productName(String productName) {
         return By.xpath("//div[@class=\"inventory_item_name\"][contains(.,\""+productName+"\")]");
     }
@@ -42,7 +47,7 @@ public class ProductsPage {
         return driver.findElement(pageTitle).getText();
     }
     public List<String> getAllProductsNames() {
-        List<WebElement> productsNamesLabels = driver.findElements(productTitleLabel);
+        List<WebElement> productsNamesLabels = driver.findElements(productNameLabels);
         List<String> productsNames = new ArrayList<>();
 
         for (WebElement productNameLabel : productsNamesLabels) {
@@ -50,8 +55,32 @@ public class ProductsPage {
         }
         return productsNames;
     }
+    public List<String> getAllProductsPrices() {
+        List<WebElement> productsPricesLabels = driver.findElements(productPriceLabels);
+        List<String> productsPrices = new ArrayList<>();
+
+        for (WebElement productPriceLabel: productsPricesLabels) {
+            productsPrices.add(productPriceLabel.getText());
+        }
+        return productsPrices;
+    }
     public boolean sortingIsDisplayed() {
-        return driver.findElement(sorting).isDisplayed();
+        return driver.findElement(sortSelector).isDisplayed();
+    }
+    public boolean sortNameAZIsSelected() {
+        return driver.findElement(sortNameAZOption).isSelected();
+    }
+    public void sortProductsByNameAToZ() {
+        driver.findElement(sortNameAZOption).click();
+    }
+    public void sortProductsByNameZToA() {
+        driver.findElement(sortNameZAOption).click();
+    }
+    public void sortProductsByPriceLowToHigh() {
+        driver.findElement(sortPriceLowToHighOption).click();
+    }
+    public void sortProductsByPriceHighToLow() {
+        driver.findElement(sortPriceHighToLowOption).click();
     }
     public void clickAddToCartButton(String productName) {
         driver.findElement(addToCartButton(productName)).click();

@@ -100,6 +100,7 @@ public class EndToEndTests extends BaseTest {
         checkoutOverviewPage.clickFinish();
         assertEquals(CheckoutCompleteMessages.PAGE_TITLE, checkoutCompletePage.getPageTitle());
         assertTrue(checkoutCompletePage.checkmarkImageIsDisplayed());
+        assertEquals(CheckoutCompleteMessages.CHECKMARK_IMAGE, checkoutCompletePage.getCheckmarkImage());
         assertEquals(CheckoutCompleteMessages.HEADER, checkoutCompletePage.getHeader());
         assertEquals(CheckoutCompleteMessages.DESCRIPTION, checkoutCompletePage.getDescription());
         assertTrue(checkoutCompletePage.backHomeButtonIsEnabled());

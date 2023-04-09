@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import testdata.Currency;
 import testdata.Product;
 import testdata.URL;
+import utils.ListSorter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -77,5 +78,22 @@ public class ProductsTests extends BaseTest{
         driver.get(URL.CART_PAGE);
         assertTrue(cartPage.checkoutButtonIsDisplayed());
         assertFalse(cartPage.getAllProductsInCart().contains(product.getName()));
+    }
+
+    @Test
+    public void sortProducts() {
+        //Check Products are sorted from A to Z by default
+        assertTrue(productsPage.sortNameAZIsSelected());
+        assertEquals(ListSorter.sortAZ(productsPage.getAllProductsNames()), productsPage.getAllProductsNames());
+
+        //Sort products by Name from Z to A
+        productsPage.sortProductsByNameZToA();
+        assertEquals(ListSorter.sortZA(productsPage.getAllProductsNames()), productsPage.getAllProductsNames());
+
+        //Sort products by Price from Low to High
+        productsPage.sortProductsByPriceHighToLow();
+        System.out.println(productsPage.getAllProductsPrices());
+        assertEquals(ListSorter.sortZA(productsPage.getAllProductsPrices()), productsPage.getAllProductsPrices());
+        System.out.println(productsPage.getAllProductsPrices());
     }
 }
