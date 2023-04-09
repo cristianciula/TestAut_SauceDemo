@@ -55,12 +55,12 @@ public class ProductsPage {
         }
         return productsNames;
     }
-    public List<String> getAllProductsPrices() {
+    public List<Double> getAllProductsPrices() {
         List<WebElement> productsPricesLabels = driver.findElements(productPriceLabels);
-        List<String> productsPrices = new ArrayList<>();
+        List<Double> productsPrices = new ArrayList<>();
 
-        for (WebElement productPriceLabel: productsPricesLabels) {
-            productsPrices.add(productPriceLabel.getText());
+        for (WebElement productPriceLabel : productsPricesLabels) {
+            productsPrices.add(Double.parseDouble(productPriceLabel.getText().replace("$", "")));
         }
         return productsPrices;
     }

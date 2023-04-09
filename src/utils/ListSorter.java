@@ -13,4 +13,12 @@ public class ListSorter {
         Collections.sort(list, Collections.reverseOrder());
         return list;
     }
+    public static List<Double> sortLowToHigh(List<Double> list) {
+        Collections.sort(list);
+        return list;
+    }
+    public static List<Double> sortHighToLow(List<Double> list) {
+        Collections.sort(list, Collections.reverseOrder());
+        return list;
+    }
 }

@@ -91,9 +91,15 @@ public class ProductsTests extends BaseTest{
         assertEquals(ListSorter.sortZA(productsPage.getAllProductsNames()), productsPage.getAllProductsNames());
 
         //Sort products by Price from Low to High
+        productsPage.sortProductsByPriceLowToHigh();
+        assertEquals(ListSorter.sortLowToHigh(productsPage.getAllProductsPrices()), productsPage.getAllProductsPrices());
+
+        //Sort products by Price from High to Low
         productsPage.sortProductsByPriceHighToLow();
-        System.out.println(productsPage.getAllProductsPrices());
-        assertEquals(ListSorter.sortZA(productsPage.getAllProductsPrices()), productsPage.getAllProductsPrices());
-        System.out.println(productsPage.getAllProductsPrices());
+        assertEquals(ListSorter.sortHighToLow(productsPage.getAllProductsPrices()), productsPage.getAllProductsPrices());
+
+        //Sort products by Name from A to Z
+        productsPage.sortProductsByNameAToZ();
+        assertEquals(ListSorter.sortAZ(productsPage.getAllProductsNames()), productsPage.getAllProductsNames());
     }
 }
