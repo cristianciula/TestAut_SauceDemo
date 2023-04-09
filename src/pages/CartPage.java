@@ -17,6 +17,9 @@ public class CartPage {
     //LOCATORS
     private By pageTitle = By.xpath("//span[@class=\"title\"]");
     private By productNameLabels = By.xpath("//div[@class=\"inventory_item_name\"]");
+    private By productPrice(String productName) {
+        return By.xpath("//div[@class=\"inventory_item_name\"][text()=\""+productName+"\"]/following::div[@class=\"inventory_item_price\"][1]");
+    }
     private By checkoutButton = By.id("checkout");
     private By productQuantityLabel(String productName) {
         return By.xpath("//div[@class=\"inventory_item_name\"][text()=\""+productName+"\"]/ancestor::div[@class=\"cart_item\"]/div[@class=\"cart_quantity\"]");
@@ -32,18 +35,14 @@ public class CartPage {
         }
         return productsNames;
     }
+    public String getProductPrice(String productName) {
+        return driver.findElement(productPrice(productName)).getText();
+    }
     public boolean checkoutButtonIsEnabled() {
         return driver.findElement(checkoutButton).isEnabled();
     }
     public boolean checkoutButtonIsDisplayed() {
         return driver.findElement(checkoutButton).isDisplayed();
-    }
-    public String getCheckoutButtonColor() {
-        String rgba = driver.findElement(checkoutButton).getCssValue("background-color");
-        return HexConverter.rgbaToHex(rgba);
-    }
-    public String getCheckoutButtonText() {
-        return driver.findElement(checkoutButton).getText();
     }
     public void clickCheckoutButton() {
         driver.findElement(checkoutButton).click();
@@ -53,5 +52,14 @@ public class CartPage {
     }
     public String getPageTitle() {
         return driver.findElement(pageTitle).getText();
+    }
+
+    //TO BE USED IN FUTURE TESTS
+    public String getCheckoutButtonColor() {
+        String rgba = driver.findElement(checkoutButton).getCssValue("background-color");
+        return HexConverter.rgbaToHex(rgba);
+    }
+    public String getCheckoutButtonText() {
+        return driver.findElement(checkoutButton).getText();
     }
 }

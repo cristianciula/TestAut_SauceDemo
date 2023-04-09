@@ -43,9 +43,11 @@ public class ProductsTests extends BaseTest{
         assertEquals(HeaderMessages.CART_BADGE_COLOR, header.getShoppingCartBadgeColor());
         assertEquals(ProductsMessages.REMOVE_BUTTON, productsPage.getRemoveButtonText(product.getName()));
 
-        //Open Shopping Cart page and check that product is present in Cart
+        //Open Shopping Cart page and check that product is present on page with expected details
         header.clickShoppingCart();
+        assertTrue(cartPage.checkoutButtonIsDisplayed());
         assertTrue(cartPage.getAllProductsInCart().contains(product.getName()));
+        assertEquals("1", cartPage.getProductQuantity(product.getName()));
     }
 
     @Test

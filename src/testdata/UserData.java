@@ -13,7 +13,7 @@ public class UserData {
         this.firstName = Reader.json(fileName).get("firstName").toString();
         this.lastName = Reader.json(fileName).get("lastName").toString();
         this.zipCode = Reader.json(fileName).get("zipCode").toString();
-        this.cardDetails = Reader.json(fileName).get("creditCard").toString();
+        this.cardDetails = Reader.json(fileName).get("cardDetails").toString();
     }
 
     //GETTERS

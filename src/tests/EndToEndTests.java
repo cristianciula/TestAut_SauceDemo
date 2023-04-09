@@ -35,30 +35,30 @@ public class EndToEndTests extends BaseTest {
 
     @Test
     public void buyProduct() {
-        //Open Product Details page and verify product details
+        //Open Product Details page and verify user is on the expected page
         productsPage.clickProductName(product.getName());
         assertTrue(productDetailsPage.addToCartButtonIsEnabled());
         assertTrue(productDetailsPage.backToProductsButtonIsDisplayed());
-
-        //Check Product Details
         assertEquals(product.getName(), productDetailsPage.getProductName());
         assertEquals(product.getDescription(), productDetailsPage.getProductDescription());
         assertEquals(Currency.USD + product.getPrice(), productDetailsPage.getProductPrice());
+        assertTrue(productDetailsPage.productImageIsDisplayed());
         assertEquals(ProductDetailsMessages.PRODUCT_IMAGE, productDetailsPage.getProductImage());
 
-        //Add product to Shopping Cart and check that expected elements on Product Details page have been updated
+        //Add product to Shopping Cart and check that expected elements on Product Details page and Header have been updated
         productDetailsPage.clickAddToCart();
         assertEquals("1", header.getCartBadgeValue());
         assertEquals(HeaderMessages.CART_BADGE_COLOR, header.getShoppingCartBadgeColor());
         assertEquals(ProductDetailsMessages.REMOVE_BUTTON, productDetailsPage.getRemoveButtonText());
         assertEquals(ProductDetailsMessages.REMOVE_BUTTON_TEXT_COLOR, productDetailsPage.getRemoveButtonTextColor());
 
-        //Navigate to Shopping Cart and check that product is present in Cart
+        //Navigate to Shopping Cart and check that product is present on page
         header.clickShoppingCart();
         assertEquals(CartMessages.CART_PAGE_TITLE, cartPage.getPageTitle());
         assertTrue(cartPage.checkoutButtonIsEnabled());
         assertTrue(cartPage.getAllProductsInCart().contains(product.getName()));
         assertEquals("1", cartPage.getProductQuantity(product.getName()));
+        assertEquals(Currency.USD + product.getPrice(), cartPage.getProductPrice(product.getName()));
 
         //Continue to Checkout: Your Information page and check user is on the expected page
         cartPage.clickCheckoutButton();
@@ -66,17 +66,17 @@ public class EndToEndTests extends BaseTest {
         assertTrue(checkoutInfoPage.firstNameInputIsDisplayed());
         assertTrue(checkoutInfoPage.lastNameInputIsDisplayed());
         assertTrue(checkoutInfoPage.zipCodeInputIsDisplayed());
+        assertTrue(checkoutInfoPage.cancelButtonIsEnabled());
         assertTrue(checkoutInfoPage.continueButtonIsEnabled());
 
-        //Fill in the form using valid user data, continue to Checkout Overview page and verify user is on expected page
+        //Fill in the form using valid user data and continue to Checkout Overview page
         checkoutInfoPage.fillUpForm(userData);
         checkoutInfoPage.clickContinue();
         assertEquals(CheckoutOverviewMessages.CHECKOUT_OVERVIEW_PAGE_TITLE, checkoutOverviewPage.getPageTitle());
         assertTrue(checkoutOverviewPage.finishButtonIsEnabled());
         assertTrue(checkoutOverviewPage.totalLabelIsDisplayed());
 
-        //Check that all details on the Checkout Overview page are accurate
-
+        //Check that all product, payment and shipping details on the Checkout Overview page are accurate
         //Product data
         assertTrue(checkoutOverviewPage.getAllProductsInCart().contains(product.getName()));
         assertEquals(product.getDescription(), checkoutOverviewPage.getProductDescription(product.getName()));
@@ -88,10 +88,11 @@ public class EndToEndTests extends BaseTest {
         assertEquals(CheckoutOverviewMessages.SHIPPING_INFORMATION, checkoutOverviewPage.getShippingInformation());
         assertEquals(CheckoutOverviewMessages.ITEM_TOTAL_TEXT + Currency.USD + product.getPrice(),
                 checkoutOverviewPage.getItemTotalValue());
-        assertEquals(CheckoutOverviewMessages.TAX_TEXT + Currency.USD + CheckoutOverviewMessages.TAX_VALUE,
+        assertEquals(CheckoutOverviewMessages.TAX_TEXT + Currency.USD +
+                TextModifiers.twoDecimalsFormatter(product.getPrice() * CheckoutOverviewMessages.TAX_PERCENTAGE),
                 checkoutOverviewPage.getTaxValue());
         assertEquals(CheckoutOverviewMessages.TOTAL_TEXT + Currency.USD +
-                         TextModifiers.twoDecimalsFormatter((product.getPrice() * CheckoutOverviewMessages.TAX_VALUE) + product.getPrice()),
+                        TextModifiers.twoDecimalsFormatter((product.getPrice() * CheckoutOverviewMessages.TAX_PERCENTAGE) + product.getPrice()),
                 checkoutOverviewPage.getTotalValue());
         assertTrue(checkoutOverviewPage.finishButtonIsEnabled());
 
@@ -102,10 +103,13 @@ public class EndToEndTests extends BaseTest {
         assertEquals(CheckoutCompleteMessages.HEADER, checkoutCompletePage.getHeader());
         assertEquals(CheckoutCompleteMessages.DESCRIPTION, checkoutCompletePage.getDescription());
         assertTrue(checkoutCompletePage.backHomeButtonIsEnabled());
+        assertEquals(CheckoutCompleteMessages.BACK_HOME_BUTTON_TEXT, checkoutCompletePage.getBackHomeButtonText());
+        assertEquals(CheckoutCompleteMessages.BACK_HOME_BUTTON_COLOR, checkoutCompletePage.getBackHomeButtonColor());
 
         //Navigate to Products page via Back Home button
         checkoutCompletePage.clickBackHomeButton();
         assertEquals(ProductsMessages.PRODUCTS_PAGE_TITLE, productsPage.getPageTitle());
+        assertTrue(header.shoppingCartButtonIsDisplayed());
         assertTrue(productsPage.sortingIsDisplayed());
     }
 }

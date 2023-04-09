@@ -29,18 +29,8 @@ public class CheckoutInfoPage {
     public boolean continueButtonIsEnabled() {
         return driver.findElement(continueButton).isEnabled();
     }
-    public String getContinueButtonText() {
-        return driver.findElement(continueButton).getAttribute("value");
-    }
-    public String getContinueButtonColor() {
-        String rgba = driver.findElement(continueButton).getCssValue("background-color");
-        return HexConverter.rgbaToHex(rgba);
-    }
     public boolean cancelButtonIsEnabled() {
         return driver.findElement(cancelButton).isEnabled();
-    }
-    public boolean cancelButtonIsDisplayed() {
-        return driver.findElement(cancelButton).isDisplayed();
     }
     public void clickContinue() {
         driver.findElement(continueButton).click();
@@ -53,15 +43,6 @@ public class CheckoutInfoPage {
     }
     public boolean zipCodeInputIsDisplayed() {
         return driver.findElement(zipCodeInput).isDisplayed();
-    }
-    public String getFirstNamePlaceholder() {
-        return driver.findElement(firstNameInput).getAttribute("placeholder");
-    }
-    public String getLastNamePlaceholder() {
-        return driver.findElement(lastNameInput).getAttribute("placeholder");
-    }
-    public String getZipCodePlaceholder() {
-        return driver.findElement(zipCodeInput).getAttribute("placeholder");
     }
     public void enterFirstName(String firstName) {
         driver.findElement(firstNameInput).sendKeys(firstName);
@@ -76,5 +57,23 @@ public class CheckoutInfoPage {
         enterFirstName(userData.getFirstName());
         enterLastName(userData.getLastName());
         enterZipCode(userData.getZipCode());
+    }
+
+    //TO BE USED FOR FUTURE TESTS
+    public String getFirstNamePlaceholder() {
+        return driver.findElement(firstNameInput).getAttribute("placeholder");
+    }
+    public String getLastNamePlaceholder() {
+        return driver.findElement(lastNameInput).getAttribute("placeholder");
+    }
+    public String getZipCodePlaceholder() {
+        return driver.findElement(zipCodeInput).getAttribute("placeholder");
+    }
+    public String getContinueButtonText() {
+        return driver.findElement(continueButton).getAttribute("value");
+    }
+    public String getContinueButtonColor() {
+        String rgba = driver.findElement(continueButton).getCssValue("background-color");
+        return HexConverter.rgbaToHex(rgba);
     }
 }

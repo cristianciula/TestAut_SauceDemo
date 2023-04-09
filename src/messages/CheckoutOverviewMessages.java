@@ -7,7 +7,7 @@ public class CheckoutOverviewMessages {
     public final static String FINISH_BUTTON_TEXT = "Finish";
     public final static String ITEM_TOTAL_TEXT = "Item total: ";
     public final static String TAX_TEXT = "Tax: ";
-    public final static double TAX_VALUE = 0.08;
+    public final static double TAX_PERCENTAGE = 0.08;
     public final static String TOTAL_TEXT = "Total: ";
 
     //COLORS

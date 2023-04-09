@@ -6,5 +6,8 @@ public class CheckoutCompleteMessages {
     public final static String PAGE_TITLE = "Checkout: Complete!";
     public final static String HEADER = "Thank you for your order!";
     public final static String DESCRIPTION = "Your order has been dispatched, and will arrive just as fast as the pony can get there!";
-    public final static String BUTTON_TEXT = "Back Home";
+    public final static String BACK_HOME_BUTTON_TEXT = "Back Home";
+
+    //COLORS
+    public final static String BACK_HOME_BUTTON_COLOR = "#3ddc91";
 }
