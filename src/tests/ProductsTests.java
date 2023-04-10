@@ -81,23 +81,23 @@ public class ProductsTests extends BaseTest{
 
     @Test
     public void sortProducts() {
-        //Check Products are sorted from A to Z by default
+        //Default: Name (A to Z)
         assertTrue(productsPage.sortNameAZIsSelected());
         assertEquals(ListSorter.sortAZ(productsPage.getAllProductsNames()), productsPage.getAllProductsNames());
 
-        //Sort products by Name from Z to A
+        //Name (Z to A)
         productsPage.sortProductsByNameZToA();
         assertEquals(ListSorter.sortZA(productsPage.getAllProductsNames()), productsPage.getAllProductsNames());
 
-        //Sort products by Price from Low to High
+        //Price (Low to High)
         productsPage.sortProductsByPriceLowToHigh();
         assertEquals(ListSorter.sortLowToHigh(productsPage.getAllProductsPrices()), productsPage.getAllProductsPrices());
 
-        //Sort products by Price from High to Low
+        //Price (High to Low)
         productsPage.sortProductsByPriceHighToLow();
         assertEquals(ListSorter.sortHighToLow(productsPage.getAllProductsPrices()), productsPage.getAllProductsPrices());
 
-        //Sort products by Name from A to Z
+        //Name (A to Z)
         productsPage.sortProductsByNameAToZ();
         assertEquals(ListSorter.sortAZ(productsPage.getAllProductsNames()), productsPage.getAllProductsNames());
     }
