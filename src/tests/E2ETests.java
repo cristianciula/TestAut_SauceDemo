@@ -11,7 +11,7 @@ import utils.TextModifiers;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class EndToEndTests extends BaseTest {
+public class E2ETests extends BaseTest {
 
     public static Product product = new Product("product");
     public static UserData userData = new UserData("userData");
