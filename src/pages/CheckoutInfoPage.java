@@ -58,8 +58,13 @@ public class CheckoutInfoPage {
         enterLastName(userData.getLastName());
         enterZipCode(userData.getZipCode());
     }
-
-    //TO BE USED FOR FUTURE TESTS
+    public String getContinueButtonText() {
+        return driver.findElement(continueButton).getAttribute("value");
+    }
+    public String getContinueButtonColor() {
+        String rgba = driver.findElement(continueButton).getCssValue("background-color");
+        return HexConverter.rgbaToHex(rgba);
+    }
     public String getFirstNamePlaceholder() {
         return driver.findElement(firstNameInput).getAttribute("placeholder");
     }
@@ -68,12 +73,5 @@ public class CheckoutInfoPage {
     }
     public String getZipCodePlaceholder() {
         return driver.findElement(zipCodeInput).getAttribute("placeholder");
-    }
-    public String getContinueButtonText() {
-        return driver.findElement(continueButton).getAttribute("value");
-    }
-    public String getContinueButtonColor() {
-        String rgba = driver.findElement(continueButton).getCssValue("background-color");
-        return HexConverter.rgbaToHex(rgba);
     }
 }

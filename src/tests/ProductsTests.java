@@ -28,7 +28,6 @@ public class ProductsTests extends BaseTest{
 
     @Test
     public void checkProductDetailsInList() {
-        //Check a product's details on Products page
         assertTrue(productsPage.getAllProductsNames().contains(product.getName()));
         assertTrue(productsPage.productImageIsDisplayed(product.getName()));
         assertEquals(ProductsMessages.PRODUCT_IMAGE, productsPage.getProductImage(product.getName()));
