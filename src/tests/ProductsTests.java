@@ -81,7 +81,7 @@ public class ProductsTests extends BaseTest{
 
     @Test
     public void sortProducts() {
-        //Default: Name (A to Z)
+        //Check that default sorting is by Name (A to Z)
         assertTrue(productsPage.sortNameAZIsSelected());
         assertEquals(ListSorter.sortAZ(productsPage.getAllProductsNames()), productsPage.getAllProductsNames());
 
